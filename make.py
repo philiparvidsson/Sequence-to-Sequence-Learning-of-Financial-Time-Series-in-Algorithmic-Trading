@@ -13,7 +13,7 @@ import pdflatex
 # SCRIPT
 #---------------------------------------
 
-pymake(pdflatex.defaultConf(), {
+pymake(pdflatex.default_conf(), {
     'name'    : 'thesis',
     'srcfile' : 'src/thesis.tex',
 })

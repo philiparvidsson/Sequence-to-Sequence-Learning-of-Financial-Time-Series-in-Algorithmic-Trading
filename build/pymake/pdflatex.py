@@ -51,7 +51,7 @@ def compile(conf):
 
     run_program('pdflatex', flags + [job_name] + [output_dir] + [srcfile])
 
-def defaultConf():
+def default_conf():
     """
     Gets the default configuration.
 
