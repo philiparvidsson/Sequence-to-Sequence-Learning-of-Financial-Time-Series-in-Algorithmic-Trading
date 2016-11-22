@@ -36,7 +36,7 @@ def clean(conf):
 @target
 def compile(conf):
     """
-    This target compiles the executable program from its sources in the src
+    This target compiles the executable program from its sources in the source
     directory.
 
     :param conf: Make configuration.
