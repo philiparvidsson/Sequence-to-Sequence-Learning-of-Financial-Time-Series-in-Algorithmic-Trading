@@ -25,6 +25,8 @@ VERSION = "0.29b"
 # GLOBALS
 #---------------------------------------
 
+_def_target = None
+
 # Exit code returned by the last call to the run_program() function.
 _exit_code = 0
 
@@ -153,6 +155,25 @@ def create_dir(path):
     if not os.path.exists(path):
         os.makedirs(path)
 
+def default_target(func):
+    """
+    Marks a function as the default make target.  The function name will be its
+    name.
+
+    :param func: Function to register as a target.
+
+    :return: The function passed intp the decorator.
+    """
+
+    global _def_target
+
+    if _def_target:
+        warn('default target set multiple times in target {}', func.__name__)
+
+    _def_target = func.__name__
+
+    return target(func)
+
 def delete_dir(path):
     """
     Deletes the specified directory if it exists.  All files inside the
@@ -205,7 +226,7 @@ def error(s, *args):
     :param args: Text formatting arguments.
     """
 
-    trace('error: ' + s, *args)
+    println('error: ' + s, *args)
 
 def find_files(path, pattern=None):
     """
@@ -231,15 +252,23 @@ def find_files(path, pattern=None):
 
     return sources
 
-def make(target, conf, completed=None):
+def make(target=None, conf=None, completed=None):
     """
     Attempts to make the specified target, making all its dependencies first.
 
     :param target:    Name of the target to make.
     :param conf:      Configuration settings.
     :param completed: Used to keep track of previously completed targets
-                      during recursion.
+                      during recursion. Do not specify.
     """
+
+    if target == None:
+        global _def_target
+
+        if not _def_target:
+            _def_target = 'all'
+
+        target = _def_target
 
     if target not in _targets:
         error('no such target: {}', target)
@@ -277,6 +306,21 @@ def get_dependencies(target):
 
     return make_func._pymake_deps
 
+
+def println(s=None, *args):
+    """
+    Displays the specified text, formatted with the specified arguments.
+
+    :param s:    Text to display.
+    :param args: Text formatting arguments.
+    """
+
+    if not s:
+        print
+        return
+
+    print s.format(*args)
+
 def pymake(*args):
     """
     Starts the make process using the specified configuration.  When the make
@@ -286,7 +330,7 @@ def pymake(*args):
     :param args: Make configuration.
     """
 
-    target = sys.argv[1] if len(sys.argv) > 1 else 'all'
+    target = sys.argv[1] if len(sys.argv) > 1 else _def_target
 
     d = {}
     for conf in args:
@@ -318,7 +362,7 @@ def run_program(s, args=None):
 
 def target(func):
     """
-    Marks a function as a make target. The function name will be its name.
+    Marks a function as a make target.  The function name will be its name.
 
     :param func: Function to register as a target.
 
@@ -329,20 +373,6 @@ def target(func):
 
     return func
 
-def trace(s=None, *args):
-    """
-    Displays the specified text, formatted with the specified arguments.
-
-    :param s:    Text to display.
-    :param args: Text formatting arguments.
-    """
-
-    if not s:
-        print
-        return
-
-    print s.format(*args)
-
 def warn(s, *args):
     """
     Prints a warning message.
@@ -351,4 +381,4 @@ def warn(s, *args):
     :param args: Text formatting arguments.
     """
 
-    trace('warning: ' + s, *args)
+    println('warning: ' + s, *args)

@@ -1,3 +1,7 @@
+"""
+Template make script for pdflatex.
+"""
+
 #---------------------------------------
 # IMPORTS
 #---------------------------------------
@@ -65,7 +69,8 @@ def default_conf():
 @target
 def watch(conf):
     """
-    This target automatically compiles the source when changes are detected.
+    This target automatically invokes the 'compile' target after changes have
+    been detected in the source file.
 
     :param conf: Make configuration.
     """
@@ -75,7 +80,7 @@ def watch(conf):
 
     while True:
         if not os.path.isfile(srcfile):
-            warn('source file deleted - exiting')
+            warn('source file deleted; aborting')
             break
 
         mtime = os.path.getmtime(srcfile)
@@ -85,7 +90,6 @@ def watch(conf):
 
         time.sleep(0.5)
 
-
 #---------------------------------------
 # SCRIPT
 #---------------------------------------
@@ -93,4 +97,4 @@ def watch(conf):
 if __name__ == '__main__':
     # If this script is executed directly, run pymake with the default
     # configuration.
-    pymake(defaultConf())
+    pymake(default_conf())
