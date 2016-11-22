@@ -26,12 +26,12 @@ def all(conf):
 @target
 def clean(conf):
     """
-    Cleans the build by deleting the dist directory and all its contents.
+    Cleans the build by deleting the bin directory and all its contents.
 
     :param conf: Make configuration.
     """
 
-    delete_dir(conf.distdir)
+    delete_dir(conf.bindir)
 
 @target
 def compile(conf):
@@ -42,11 +42,11 @@ def compile(conf):
     :param conf: Make configuration.
     """
 
-    create_dir(conf.distdir)
+    create_dir(conf.bindir)
 
     flags      = conf.flags
     job_name   = '-job-name=' + conf.name
-    output_dir = '-output-directory=' + conf.distdir
+    output_dir = '-output-directory=' + conf.bindir
     srcfile    = conf.srcfile
 
     run_program('pdflatex', flags + [job_name] + [output_dir] + [srcfile])
@@ -58,8 +58,8 @@ def default_conf():
     :return: Default configuration settings.
     """
     return {
-        'flags'   : ['-c-style-errors', '-quiet'],
-        'distdir' : 'dist'
+        'bindir' : 'bin',
+        'flags'  : ['-c-style-errors', '-quiet']
     }
 
 @target
