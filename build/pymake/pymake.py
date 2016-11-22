@@ -19,7 +19,7 @@ import sys
 # CONSTANTS
 #---------------------------------------
 
-VERSION = "0.27b"
+VERSION = "0.29b"
 
 #---------------------------------------
 # GLOBALS
@@ -245,7 +245,7 @@ def make(target, conf, completed=None):
         error('no such target: {}', target)
         return
 
-    if not completed:
+    if completed == None:
         completed = []
 
     if target in completed:
