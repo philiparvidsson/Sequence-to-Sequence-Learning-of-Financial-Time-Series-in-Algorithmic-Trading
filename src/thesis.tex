@@ -1,13 +1,13 @@
-\documentclass[12pt]{report}
+\documentclass[11pt,twoside,openright]{report}
 
-\usepackage[a4paper,width=150mm,top=25mm,bottom=25mm]{geometry}
 \usepackage[utf8]{inputenc}
 \usepackage{graphicx}
+\usepackage[a4paper,width=150mm,top=25mm,bottom=25mm]{geometry}
 \usepackage{fancyhdr}
 
 \pagestyle{fancy}
 
-\graphicspath{{../images/}}
+\graphicspath{{../assets/images/}}
 
 \fancyhead{}
 \fancyhead[RO,LE]{Thesis Title}
@@ -16,6 +16,9 @@
 \fancyfoot[LO,CE]{Chapter \thechapter}
 \fancyfoot[CO,RE]{Author Name}
 
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
 \title{
   {Thesis Title}\\
   {\large University of Borås}\\
@@ -23,15 +26,22 @@
 
 \author{Philip Arvidsson \& Tobias Ånhed}
 
-\date{April 1st, 2017 LOOOL}
+\date{April 1st, 2017 LwOOOL}
 
+\maketitle
 
-\begin{document}
-    \maketitle
+\chapter*{Abstract}
+Abstract goes here
 
-    \chapter*{Abstract}
+\chapter*{Dedication}
+To mum and dad
 
-    \tableofcontents
-    \chapter{Introduction}
-    \input{src/chapters/introduction}
-\end{document}
+\chapter*{Declaration}
+I declare that..
+
+\chapter*{Acknowledgements}
+I want to thank...
+
+\tableofcontents
+\chapter{Introduction}
+\input{chapters/introduction}

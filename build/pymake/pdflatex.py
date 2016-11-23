@@ -48,12 +48,21 @@ def compile(conf):
 
     create_dir(conf.bindir)
 
+    bindir = os.path.abspath(conf.bindir)
+    srcdir = os.path.abspath(conf.srcdir)
+
     flags      = conf.flags
     job_name   = '-job-name=' + conf.name
-    output_dir = '-output-directory=' + conf.bindir
+    output_dir = '-output-directory=' + os.path.relpath(bindir, srcdir)
     srcfile    = conf.srcfile
 
+    cwd = os.getcwd()
+
+    os.chdir(srcdir)
+
     run_program('pdflatex', flags + [job_name] + [output_dir] + [srcfile])
+
+    os.chdir(cwd)
 
 def default_conf():
     """
@@ -62,8 +71,10 @@ def default_conf():
     :return: Default configuration settings.
     """
     return {
-        'bindir' : 'bin',
-        'flags'  : ['-c-style-errors']
+        'bindir'  : 'bin',
+        'flags'   : ['-c-style-errors'],
+        'srcdir'  : 'src',
+        'srcfile' : 'main.tex'
     }
 
 @target
@@ -75,18 +86,28 @@ def watch(conf):
     :param conf: Make configuration.
     """
 
-    last_mtime = None
-    srcfile    = conf.srcfile
+    filenames = find_files(conf.srcdir, '*.tex') + find_files(conf.srcdir, '*.bib')
+
+    mtimes = {}
 
     while True:
-        if not os.path.isfile(srcfile):
-            warn('source file deleted; aborting')
-            break
+        files_changed = False
 
-        mtime = os.path.getmtime(srcfile)
-        if mtime <> last_mtime:
+        for filename in filenames:
+            if not os.path.isfile(filename):
+                continue
+
+            mtime = os.path.getmtime(filename)
+
+            if not filename in mtimes:
+                mtimes[filename] = mtime
+
+            if mtime > mtimes[filename]:
+                mtimes[filename] = mtime
+                files_changed = True
+
+        if files_changed:
             make('compile', conf)
-            last_mtime = mtime
 
         time.sleep(0.5)
 
