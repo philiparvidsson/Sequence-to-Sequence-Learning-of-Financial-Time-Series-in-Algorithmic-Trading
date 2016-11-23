@@ -63,7 +63,7 @@ def default_conf():
     """
     return {
         'bindir' : 'bin',
-        'flags'  : ['-c-style-errors', '-quiet']
+        'flags'  : ['-c-style-errors']
     }
 
 @target

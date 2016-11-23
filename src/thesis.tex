@@ -1,9 +1,27 @@
-\documentclass{article}
-\title{Test Document (so far)}
-\author{Philip Arvidsson \& Tobias Anhed}
-\date{November 2016}
+\documentclass[12pt]{report}
+
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+
+\graphicspath{{../images/}}
+
+\title{
+  {Thesis Title}\\
+  {\large University of Boras}\\
+}
+
+\author{Philip Arvidsson}
+\author{Tobias Anhed}
+
+\date{23 11 2016}
+
 
 \begin{document}
     \maketitle
-    Hello world!!
+
+    \chapter*{Abstract}
+
+    \tableofcontents
+    \chapter{Introduction}
+    \input{src/chapters/introduction}
 \end{document}
