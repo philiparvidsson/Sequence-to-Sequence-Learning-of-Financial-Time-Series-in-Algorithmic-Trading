@@ -11,6 +11,8 @@ Run `python make.py` in the project root directory. If you intend to work contin
 * https://student.portal.chalmers.se/sv/chalmersstudier/kandidat-och-examensarbete/examensarbete/Sidor/Planeringsrapport.aspx
 * https://student.portal.chalmers.se/sv/chalmersstudier/kandidat-och-examensarbete/kandidatarbete/genomforande/Sidor/Planeringsrapport.aspx
 
+* Writing a Thesis in LaTeX: https://www.sharelatex.com/blog/2013/08/02/thesis-series-pt1.html
+
 ## Delimitations:
 
 * We will not be writing the source code for the neural networks. Instead, we will use [scikit-learn](http://scikit-learn.org/) and [TenslowFlow](https://www.tensorflow.org/)

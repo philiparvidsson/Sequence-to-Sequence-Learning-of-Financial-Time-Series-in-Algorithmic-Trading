@@ -1,19 +1,29 @@
 \documentclass[12pt]{report}
 
+\usepackage[a4paper,width=150mm,top=25mm,bottom=25mm]{geometry}
 \usepackage[utf8]{inputenc}
 \usepackage{graphicx}
+\usepackage{fancyhdr}
+
+\pagestyle{fancy}
 
 \graphicspath{{../images/}}
 
+\fancyhead{}
+\fancyhead[RO,LE]{Thesis Title}
+\fancyfoot{}
+\fancyfoot[LE,RO]{\thepage}
+\fancyfoot[LO,CE]{Chapter \thechapter}
+\fancyfoot[CO,RE]{Author Name}
+
 \title{
   {Thesis Title}\\
-  {\large University of Boras}\\
+  {\large University of Borås}\\
 }
 
-\author{Philip Arvidsson}
-\author{Tobias Anhed}
+\author{Philip Arvidsson \& Tobias Ånhed}
 
-\date{23 11 2016}
+\date{April 1st, 2017 LOOOL}
 
 
 \begin{document}
