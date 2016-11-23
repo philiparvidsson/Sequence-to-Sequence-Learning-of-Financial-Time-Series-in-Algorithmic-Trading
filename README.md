@@ -9,3 +9,4 @@ Run `python make.py` in the project root directory. If you intend to work contin
 ## Links
 
 https://student.portal.chalmers.se/sv/chalmersstudier/kandidat-och-examensarbete/examensarbete/Sidor/Planeringsrapport.aspx
+https://student.portal.chalmers.se/sv/chalmersstudier/kandidat-och-examensarbete/kandidatarbete/genomforande/Sidor/Planeringsrapport.aspx
