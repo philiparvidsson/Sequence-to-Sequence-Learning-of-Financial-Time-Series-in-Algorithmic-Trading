@@ -1,26 +1,14 @@
-\documentclass[11pt,twoside,openright]{report}
+\documentclass[11pt]{book}
 
+\usepackage[a4paper,left=2cm,right=2cm,top=2.5cm,bottom=2.5cm]{geometry}
 \usepackage[utf8]{inputenc}
-\usepackage{graphicx}
-\usepackage[a4paper,width=150mm,top=25mm,bottom=25mm]{geometry}
-\usepackage{fancyhdr}
 
-\pagestyle{fancy}
+\renewcommand{\baselinestretch}{1.5}
 
-\graphicspath{{../assets/images/}}
-
-\fancyhead{}
-\fancyhead[RO,LE]{Thesis Title}
-\fancyfoot{}
-\fancyfoot[LE,RO]{\thepage}
-\fancyfoot[LO,CE]{Chapter \thechapter}
-\fancyfoot[CO,RE]{Author Name}
-
-\renewcommand{\headrulewidth}{0.4pt}
-\renewcommand{\footrulewidth}{0.4pt}
 \begin{document}
+
 \title{
-  {Thesis Title}\\
+  {Sequence-to-sequence learning of financial time series in algorithmic trading}\\
   {\large University of Borås}\\
 }
 
@@ -30,20 +18,9 @@
 
 \maketitle
 
-\chapter*{Abstract}
-Abstract goes here
-
-\chapter*{Dedication}
-To mum and dad
-
-\chapter*{Declaration}
-I declare that..
-
-\chapter*{Acknowledgements}
-I want to thank...
-
-\tableofcontents
+%\tableofcontents
 
 \chapter{Introduction}
 \input{chapters/introduction}
+
 \end{document}

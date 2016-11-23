@@ -100,7 +100,7 @@ def watch(conf):
             mtime = os.path.getmtime(filename)
 
             if not filename in mtimes:
-                mtimes[filename] = mtime
+                mtimes[filename] = 0
 
             if mtime > mtimes[filename]:
                 mtimes[filename] = mtime
