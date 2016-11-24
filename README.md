@@ -22,3 +22,4 @@ Run `python make.py` in the project root directory. If you intend to work contin
 ## Todo:
 
 * Plan new meeting with PAGA
+* Discuss LateX-template with HELI 
