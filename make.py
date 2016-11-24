@@ -15,5 +15,5 @@ import pdflatex
 
 pymake(pdflatex.default_conf(), {
     'name'    : 'thesis',
-    'srcfile' : 'thesis.tex'
+    'srcfile' : 'main.tex'
 })

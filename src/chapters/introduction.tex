@@ -1,22 +1,14 @@
+Läs nu, you gon be amazeeee
 
-Time series forecasting is an important topic in multiple domains; such as predicting the future value of temperature, humidity and wind speed in weather forecasting applications, predicting the future value of power consumption in an electrical grid, or predicting the future value of volatility and returns in a financial market.
+\section{Background and motivation}
+Time series forecasting---predicting future values---is a largely unsolved problem in complex or chaotic domains such as weather or economics. Past attempts have approached the problem with algorithms that are not designed to handle sequential datasets and assume that the data points are independent and identically distributed.
 
-Many statistical tools and machine learning algorithms aren’t designed to handle sequential datasets and assume that data points are IID (Independent and Identically Distributed). Time series datasets include a temporal component, producing serially correlated data points (hence violating the IID assumption). Furthermore, most time series datasets are non-stationary.
+\section{Current research}
+In the field of machine learning, HMMs (Hidden Markov Models), DBNs (Dynamic Bayesian Networks), TDNNs (Tapped-Delay Neural Networks) and RNNs (Recurrent Neural Networks) are commonly used to handle sequential datasets.
 
-In statistics, econometrics and signal processing, one traditional approach, used to model time series, is to transform the dataset (using i.e. differencing and logarithms) into a (weak) stationary distribution, induce a predictive ARIMA-based (AutoRegressive Integrating Moving Average) model, and re-transform the predicted output signal into its original form.
+RNNs (Recurrent Neural Networks) have historically had problems with vanishing (or exploding) gradients, but this problem was solved by Hochreiter and Schmidhuber when they introduced their LSTM (Long Short-Term Memory) variant of RNNs.  More recently, deep LSTM-based RNNs have successfully been applied to predict future time series sequences from historical, sequential datasets, such as predicting the weather for the next 24 hours, or predicting the nxt sequence of words in natural language.
 
-In machine learning, HMMs (Hidden Markov Models), DBNs (Dynamic Bayesian Networks), TDNNs (Tapped-Delay Neural Networks) and RNNs (Recurrent Neural Networks) are commonly used to handle sequential datasets. Neural network-based methods (connectionism) have become popular machine learning methods in both academia and industry, especially since the inception of the big data era and the deep learning revolution (2006).
+\section{Problem statement}
+Financial time series are used ubiquitously in algorithmic trading since. In algorithmic trading, it is imperative to make accurate predictions about numerous variables (such as volatility and returns) in order to time market entry and exit.
 
-RNNs (Recurrent Neural Networks) have historically been plagued with the vanishing (or exploding) gradient problem, but this problem was solved by Hochreiter and Schmidhuber when they introduced their LSTM-based (Long Short-Term Memory) RNNs. Recently, deep LSTM-based RNNs have successfully been applied to predict future time series sequences from historical time series sequences, such as predicting the weather for the next 24 hours, or predicting the next sequence of words in written and spoken language.
-
-Financial time series are commonly used in algorithmic trading. In algorithmic trading, it is important to make predictions about numerous variables (such as volatility and returns) in order to time market entry and exit. Furthermore, in a trading scenario, it isn’t sufficient to predict when to place a single bid or ask order into the market, since a profit isn’t realized until a long or short position is closed-out (by placing a corresponding ask or bid into the market). Since deep LSTM-based RNNs have never been applied within the algorithmic trading domain before, and since they have shown great success in solving similar problems in other domains, it raises the question if the technique can be used to predict a future sequence of financial variables that can be used to time both entry and exit positions within a certain time horizon.
-
-forskningsöversikt (teoretiskt fokus)\\
-  visar vår kompetens pa omradet\\
-  leder fram till problemdiskussion\\
-
-problemdiskussion\\
-  utgår ifran gjord forskningsoversikt\\
-  leder fram till en frågestallning\\
-
-problemformulering och syfte\\
+Since deep LSTM-based RNNs have not been applied to the algorithmic trading domain before, and since they have shown success in solving similar problems in other domains, it raises the question whether the technique can be used to predict a future sequence of financial variables that can be used to time both entry and exit positions within a certain time horizon.
