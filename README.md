@@ -18,3 +18,7 @@ Run `python make.py` in the project root directory. If you intend to work contin
 * We will not be writing the source code for the neural networks. Instead, we will use [scikit-learn](http://scikit-learn.org/) and [TensorFlow](https://www.tensorflow.org/)
 * We will only use FOREX data as source for financial data (other sources  do not provide real-time data)
 * The problem will be treated as a classificatiom problem rather than a regression problem (maybe)
+
+## Todo:
+
+* Plan new meeting with PAGA
