@@ -1,12 +1,17 @@
+Time series forecasting---predicting future values---is a largely unsolved problem in complex or chaotic domains such as weather and economics. In this thesis, we attempt to solve the problem by using LSTM-based RNNs, something that has not been done before.
+
 \section{Background and motivation}
-Time series forecasting---predicting future values---is a largely unsolved problem in complex or chaotic domains such as weather or economics. Past attempts have approached the problem with algorithms that are not designed to handle sequential datasets and assume that the data points are independent and identically distributed.
+Past attempts have approached the problem with algorithms that are not designed specifically to handle sequential datasets and instead assume that the data points are IID (independent and identically distributed). Time series sequences have a temporal component dictating their intra-dependencies distribution, where each element in the sequence is dependent upon previous elements through a variety of factors.
+
+The problem should be examined with algorithms, designed specifically for time series sequences, that take into account the temporal aspect of the datasets.
 
 \section{Current research}
 In the field of machine learning, HMMs (Hidden Markov Models), DBNs (Dynamic Bayesian Networks), TDNNs (Tapped-Delay Neural Networks) and RNNs (Recurrent Neural Networks) are commonly used to handle sequential datasets.
 
-RNNs (Recurrent Neural Networks) have historically had problems with vanishing (or exploding) gradients, but this problem was solved by Hochreiter and Schmidhuber when they introduced their LSTM (Long Short-Term Memory) variant of RNNs.  More recently, deep LSTM-based RNNs have successfully been applied to predict future time series sequences from historical, sequential datasets, such as predicting the weather for the next 24 hours, or predicting the nxt sequence of words in natural language.
+RNNs (Recurrent Neural Networks) have historically had problems with vanishing (or exploding) gradients, but this problem was solved by Hochreiter and Schmidhuber when they introduced their LSTM (Long Short-Term Memory) variant of RNNs. More recently, deep LSTM-based RNNs have successfully been applied to predict future time series sequences from historical, sequential datasets; such as predicting the weather for the next 24 hours, or predicting the next sequence of words in natural language.
 
+\newpage
 \section{Problem statement}
-Financial time series are used ubiquitously in algorithmic trading since. In algorithmic trading, it is imperative to make accurate predictions about numerous variables (such as volatility and returns) in order to time market entry and exit.
+Financial time series are used ubiquitously in algorithmic trading. In algorithmic trading, it is imperative to make accurate predictions about numerous variables (such as volatility and returns) in order to time market entry and exit.
 
-Since deep LSTM-based RNNs have not been applied to the algorithmic trading domain before, and since they have shown success in solving similar problems in other domains, it raises the question whether the technique can be used to predict a future sequence of financial variables that can be used to time both entry and exit positions within a certain time horizon.
+Since deep LSTM-based RNNs have not been applied to the algorithmic trading domain before, and since they have shown great success in solving similar problems in other domains, it raises the question whether the technique can be used to predict a future sequence of financial variables that can be used to time both entry and exit positions within a certain time horizon.
