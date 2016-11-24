@@ -3,17 +3,17 @@
 #---------------------------------------
 
 import os, sys
-sys.path.insert(0, os.path.join('build', 'pymake'))
+sys.path.insert(0, os.path.join('build', 'pymake2'))
 
-from pymake import *
+from pymake2 import *
 
-import pdflatex
+from pymake2.template.latex import pdflatex
 
 #---------------------------------------
 # SCRIPT
 #---------------------------------------
 
-pymake(pdflatex.default_conf(), {
+pymake2({
     'name'    : 'thesis',
     'srcfile' : 'main.tex'
 })
