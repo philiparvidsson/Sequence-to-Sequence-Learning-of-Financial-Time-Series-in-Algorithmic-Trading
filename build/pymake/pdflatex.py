@@ -52,15 +52,15 @@ def compile(conf):
     srcdir = os.path.abspath(conf.srcdir)
 
     flags      = conf.flags
-    job_name   = '-job-name=' + conf.name
-    output_dir = '-output-directory=' + os.path.relpath(bindir, srcdir)
+    jobname    = ['-jobname'          , conf.name ]
+    output_dir = [ '-output-directory', os.path.relpath(bindir, srcdir) ]
     srcfile    = conf.srcfile
 
     cwd = os.getcwd()
 
     os.chdir(srcdir)
 
-    run_program('pdflatex', flags + [job_name] + [output_dir] + [srcfile])
+    run_program('pdflatex', flags + jobname + output_dir + [srcfile])
 
     os.chdir(cwd)
 
@@ -72,7 +72,7 @@ def default_conf():
     """
     return {
         'bindir'  : 'bin',
-        'flags'   : ['-c-style-errors'],
+        'flags'   : [ '-halt-on-error' ],
         'srcdir'  : 'src',
         'srcfile' : 'main.tex'
     }
