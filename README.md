@@ -13,6 +13,9 @@ Run `python make.py` in the project root directory. If you intend to work contin
 
 * Writing a Thesis in LaTeX: https://www.sharelatex.com/blog/2013/08/02/thesis-series-pt1.html
 
+* Trading and ML: https://www.youtube.com/playlist?list=PLAwxTw4SYaPnIRwl6rad_mYwEk4Gmj7Mx
+* TensorFlow tutorial: https://www.youtube.com/watch?v=Ejec3ID_h0w&feature=youtu.be
+
 ## Delimitations:
 
 * We will not be writing the source code for the neural networks. Instead, we will use [scikit-learn](http://scikit-learn.org/) and [TensorFlow](https://www.tensorflow.org/)
