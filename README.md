@@ -12,9 +12,12 @@ Run `python make.py` in the project root directory. If you intend to work contin
 * https://student.portal.chalmers.se/sv/chalmersstudier/kandidat-och-examensarbete/kandidatarbete/genomforande/Sidor/Planeringsrapport.aspx
 
 * Writing a Thesis in LaTeX: https://www.sharelatex.com/blog/2013/08/02/thesis-series-pt1.html
-
 * Trading and ML: https://www.youtube.com/playlist?list=PLAwxTw4SYaPnIRwl6rad_mYwEk4Gmj7Mx
+
+## Lectures
+
 * TensorFlow tutorial: https://www.youtube.com/watch?v=Ejec3ID_h0w&feature=youtu.be
+* [Tensorflow and deep learning without a PhD, by Martin Görner](https://www.youtube.com/watch?v=vq2nnJ4g6N0)
 
 ## Delimitations:
 
@@ -23,6 +26,3 @@ Run `python make.py` in the project root directory. If you intend to work contin
 * The problem will be treated as a classificatiom problem rather than a regression problem (maybe)
 
 ## Todo:
-
-* Plan new meeting with PAGA
-* Discuss LateX-template with HELI 
