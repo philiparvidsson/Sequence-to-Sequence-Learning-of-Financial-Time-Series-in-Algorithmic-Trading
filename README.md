@@ -26,3 +26,6 @@ Run `python make.py` in the project root directory. If you intend to work contin
 * The problem will be treated as a classificatiom problem rather than a regression problem (maybe)
 
 ## Todo:
+
+* Läsa om ANN & RNN, kanske LSTM
+* Prova att implementera lite i TF
