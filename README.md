@@ -25,4 +25,14 @@ Run `python make.py` in the project root directory. If you intend to work contin
 * We will only use FOREX data as source for financial data (other sources  do not provide real-time data)
 * The problem will be treated as a classificatiom problem rather than a regression problem (maybe)
 
+## Questions
+
+### What is maximum drawdown?
+
+Maximum drawdown is the ratio of the all-time high and all-time low prices of a stock:
+
+`max_drawdown = (high - low)/high`
+
+More info: https://www.youtube.com/watch?v=sgqQWb3tT6U
+
 ## Todo:
