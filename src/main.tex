@@ -1,17 +1,29 @@
 \documentclass[11pt]{report}
 
+% English rules for punctuation.
 \usepackage[english]{babel}
 \usepackage[a4paper]{geometry}
 \usepackage{graphicx}
 \usepackage[utf8]{inputenc}
+
+% We use natbib for Harvard-style references.
 \usepackage[numbers]{natbib}
 
+% Using abbrvnat gives unnumbered references wich abbreviated names.
 \bibliographystyle{abbrvnat}
+
+% Example: (Author, Author and Author, 2016)
 \setcitestyle{authoryear,open={(},close={)}}
 
+% We use both an indent for paragraphs as well as a slight gap to make them even more clear. This gives a relaxed yet concise look.
+\setlength{\parindent}{2.5em}
+\setlength{\parskip}{0.3em}
+
+% All graphical assets used in the images are stored in this path.
 \graphicspath{{../assets/images/}}
 
-\renewcommand{\baselinestretch}{1.35}
+% Line spacing of 1.35 gives a relaxed look without making the text too sparse.
+\linespread{1.35}
 
 \title{
   {\huge{Sequence-to-Sequence Learning of Financial Time Series in Algorithmic
@@ -29,14 +41,12 @@
 \date{\vspace{20mm}\today}
 
 \begin{document}
+    \maketitle
 
-\maketitle
+    \tableofcontents
 
-\tableofcontents
+    \chapter{Introduction}
+    \input{chapters/introduction}
 
-\chapter{Introduction}
-\input{chapters/introduction}
-
-\bibliography{references}{}
-
+    \bibliography{references}{}
 \end{document}
