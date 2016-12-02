@@ -36,3 +36,6 @@ Maximum drawdown is the ratio of the all-time high and all-time low prices of a 
 More info: https://www.youtube.com/watch?v=sgqQWb3tT6U
 
 ## Todo:
+
+* Läsa om ANN & RNN, kanske LSTM
+* Prova att implementera lite i TF
