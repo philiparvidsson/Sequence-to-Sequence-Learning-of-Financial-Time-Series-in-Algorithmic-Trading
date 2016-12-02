@@ -1,29 +1,49 @@
 \documentclass[11pt]{report}
 
+%---------------------------------------
+% PACKAGES
+%---------------------------------------
+
 % English rules for punctuation.
 \usepackage[english]{babel}
+
+% A4 paper since we're in the EU.
 \usepackage[a4paper]{geometry}
+
+% For inclusion of graphics (e.g. front page logo)
 \usepackage{graphicx}
+% All graphical assets used in the images are stored in this path.
+\graphicspath{{../assets/images/}}
+
+% Always prefer UTF-8 if available.
 \usepackage[utf8]{inputenc}
+
+% The microtype package improve justification.
+\usepackage{microtype}
 
 % We use natbib for Harvard-style references.
 \usepackage[numbers]{natbib}
-
 % Using abbrvnat gives unnumbered references wich abbreviated names.
 \bibliographystyle{abbrvnat}
-
 % Example: (Author, Author and Author, 2016)
 \setcitestyle{authoryear,open={(},close={)}}
+
+% The default titles and headings are way too big, so we configure them here.
+\usepackage{titlesec}
+\titleformat{\chapter}{\bfseries\Large}{\thechapter}{20pt}{}
+\titleformat{\section}{\bfseries\large}{\thesection}{5mm}{}
+
+%---------------------------------------
+% GENERAL SETTINGS
+%---------------------------------------
 
 % We use both an indent for paragraphs as well as a slight gap to make them even more clear. This gives a relaxed yet concise look.
 \setlength{\parindent}{2.5em}
 \setlength{\parskip}{0.3em}
+\titlespacing*{\chapter}{0pt}{50pt}{30pt}
 
-% All graphical assets used in the images are stored in this path.
-\graphicspath{{../assets/images/}}
-
-% Line spacing of 1.35 gives a relaxed look without making the text too sparse.
-\linespread{1.35}
+% Line spacing of 1.25 gives a relaxed look without making the text too sparse.
+\linespread{1.25}
 
 \title{
   {\huge{Sequence-to-Sequence Learning of Financial Time Series in Algorithmic
@@ -40,13 +60,23 @@
 
 \date{\vspace{20mm}\today}
 
+%---------------------------------------
+% DOCUMENT
+%---------------------------------------
+
 \begin{document}
-    \maketitle
+  \maketitle
 
+  \input{abstract.tex}
+
+  \begingroup
+    \let\clearpage\relax
+    \let\cleardoublepage\relax
     \tableofcontents
+  \endgroup
 
-    \chapter{Introduction}
-    \input{chapters/introduction}
+  \chapter{Introduction}
+  \input{chapters/introduction}
 
-    \bibliography{references}{}
+  \bibliography{bibliography}{}
 \end{document}

@@ -29,11 +29,17 @@ def bibtex(conf):
 
     srcfile = os.path.join(conf.srcdir, conf.srcfile)
 
+    atime = os.path.getatime(srcfile)
+    mtime = os.path.getmtime(srcfile)
+
     os.utime(srcfile, None)
     pdflatex.compile(conf)
 
     os.utime(srcfile, None)
     pdflatex.compile(conf)
+
+    # Restore access and modified times to not break the 'watch' target.
+    os.utime(srcfile, (atime, mtime))
 
 pymake2({
     'name'    : 'thesis',

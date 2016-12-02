@@ -1,18 +1,20 @@
-Time series forecasting---predicting future values of variables within a domain---is a largely unsolved problem in complex or chaotic domains such as weather (e.g. humidity, temperature or wind speed) and economics (e.g. currency exchange rates or stock prices). mer text här plsssssssssssss
+Time series forecasting---predicting future values of variables within a domain---is a largely unsolved problem in complex or chaotic domains such as weather (e.g. humidity, temperature or wind speed) and economics (e.g. currency exchange rates or stock prices). Examining the problem with the latest models in the field of machine learning---\textsc{lstm}-based \textsc{rnn}s---gives rise to new hope of deepening our understanding of the problem.
 
 \section{Background and motivation}
-Past attempts have approached the problem with algorithms that are not designed specifically to handle sequential datasets and instead assume that the data points are IID (Independent and Identically Distributed). Time series sequences have a temporal component dictating their intradependence and distribution within the dataset, where each element in the sequence is correlated to previous (with respect to time) elements through a plethora of factors.
+Past attempts have approached the problem with algorithms that are not designed specifically to handle sequential datasets and instead assume that the data points are \textsc{iid} (\textsc{i}ndependent and \textsc{i}dentically \textsc{d}istributed).
 
-The problem should be examined with algorithms, designed specifically for time series sequences, that take into account the temporal aspect of the datasets.
+Time series sequences have a temporal component dictating their intradependence and distribution within the dataset, where each element in the sequence is correlated to previous (with respect to time) elements through a plethora of factors.
+
+Regardless of whether the problem is approached as a matter of classification or regression, the temporal aspect renders algorithms not specifically designed for the task impotent since one single input dataset could belong to several different classes depending on where, in time, it appears in the data sequence. The problem should therefore be examined with algorithms designed specifically for time series sequences, such as \textsc{lstm}-based \textsc{rnn}s.
 
 \section{Current research}
-In the field of machine learning, HMMs (Hidden Markov Models), DBNs (Dynamic Bayesian Networks), TDNNs (Tapped-Delay Neural Networks) and RNNs are commonly used to handle sequential datasets.
+In the field of machine learning, \textsc{hmm}s (\textsc{h}idden \textsc{m}arkov \textsc{m}odels), \textsc{dbn}s (\textsc{d}ynamic \textsc{b}ayesian \textsc{n}etworks), \textsc{tdnn}s (\textsc{t}apped-\textsc{d}elay \textsc{n}eural \textsc{n}etworks) and \textsc{rnn}s are commonly used to handle sequential datasets.
 
-RNNs (Recurrent Neural Networks) have historically had problems with vanishing (or exploding) gradients, but this problem was solved through the introduction of the LSTM-based RNNs \citep*{hochreiter1997}. More recently, deep LSTM-based RNNs have successfully been applied to predict future time series sequences from historical, sequential datasets; such as predicting the weather for the next twenty-four hours \citep*{zaytar2016}, or predicting the next sequence of words in natural language \citep*{quoc2014}.
+\textsc{rnn}s (\textsc{r}ecurrent \textsc{n}eural \textsc{n}etworks) have historically had problems with vanishing (or exploding) gradients, but this problem was solved through the introduction of the \textsc{lstm}-based \textsc{rnn}s \citep*{hochreiter1997}. More recently, deep \textsc{lstm}-based \textsc{rnn}s have successfully been applied to predict future time series sequences from historical, sequential datasets; such as predicting the weather for the next twenty-four hours \citep*{zaytar2016}, or predicting the next sequence of words in natural language \citep*{quoc2014}.
 
 \section{Problem statement}
 Financial time series are used ubiquitously in algorithmic trading. In algorithmic trading, it is imperative that accurate predictions are made about numerous variables (such as volatility and returns) in order to time market entry and exit.
 
-Since deep LSTM-based RNNs have only been applied within the algorithmic trading domain to a minimal extent, and since they have shown great success in solving similar problems in other domains, it raises the question whether the technique can be used to predict a future sequence of financial variables that can be used to time both entry and exit positions within a certain time horizon.
+Since deep \textsc{lstm}-based \textsc{rnn}s have only been applied within the algorithmic trading domain to a minimal extent, and since they have shown great success in solving similar problems in other domains, it raises the question whether the technique can be used to predict a future sequence of financial variables that can be used to time both entry and exit positions within a certain time horizon.
 
-Presuming that correlations exist along the temporal dimension of the dataset, the problem is reduced to a matter of finding an appropriate set of \textit{features} enhancing the correlations, on which to train the LSTM-based RNN.
+Presuming that correlations exist along the temporal dimension of the dataset, the problem is reduced to a matter of finding an appropriate set of \textit{features} enhancing the correlations, on which to train the \textsc{lstm}-based \textsc{rnn}.
