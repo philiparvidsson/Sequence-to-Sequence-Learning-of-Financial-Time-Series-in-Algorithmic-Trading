@@ -10,6 +10,11 @@ from pymake2.template.util  import fswatcher
 def all(conf):
     pass
 
+@after_target('compile')
+def bibtex(conf):
+    name = os.path.join(conf.bindir, conf.name)
+    run_program('bibtex', [ '--include-directory', conf.srcdir, name ])
+
 pymake2({
     'name'    : 'thesis',
     'srcfile' : 'main.tex'

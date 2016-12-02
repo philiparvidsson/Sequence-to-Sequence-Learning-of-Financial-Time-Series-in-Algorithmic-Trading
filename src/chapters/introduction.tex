@@ -8,11 +8,11 @@ The problem should be examined with algorithms, designed specifically for time s
 \section{Current research}
 In the field of machine learning, HMMs (Hidden Markov Models), DBNs (Dynamic Bayesian Networks), TDNNs (Tapped-Delay Neural Networks) and RNNs (Recurrent Neural Networks) are commonly used to handle sequential datasets.
 
-RNNs (Recurrent Neural Networks) have historically had problems with vanishing (or exploding) gradients, but this problem was solved by Hochreiter and Schmidhuber when they introduced their LSTM (Long Short-Term Memory) variant of RNNs. More recently, deep LSTM-based RNNs have successfully been applied to predict future time series sequences from historical, sequential datasets; such as predicting the weather for the next 24 hours, or predicting the next sequence of words in natural language.
+RNNs (Recurrent Neural Networks) have historically had problems with vanishing (or exploding) gradients, but this problem was solved through the introduction of the LSTM-based (Long Short-Term Memory) RNNs \citep*{hochreiter1997}. More recently, deep LSTM-based RNNs have successfully been applied to predict future time series sequences from historical, sequential datasets; such as predicting the weather for the next twenty-four hours \citep*{zaytar2016}, or predicting the next sequence of words in natural language \citep*{quoc2014}.
 
 \section{Problem statement}
 Financial time series are used ubiquitously in algorithmic trading. In algorithmic trading, it is imperative that accurate predictions are made about numerous variables (such as volatility and returns) in order to time market entry and exit.
 
 Since deep LSTM-based RNNs have only been applied within the algorithmic trading domain to a minimal extent, and since they have shown great success in solving similar problems in other domains, it raises the question whether the technique can be used to predict a future sequence of financial variables that can be used to time both entry and exit positions within a certain time horizon.
 
-Presuming that correlations exist along the temporal dimension of the dataset, the problem is reduced to a matter of finding an appropriate set of \textit{featuers}, that enhance the correlations, on which to train the LSTM-based RNN.
+Presuming that correlations exist along the temporal dimension of the dataset, the problem is reduced to a matter of finding an appropriate set of \textit{featuers} enhancing the correlations, on which to train the LSTM-based RNN.

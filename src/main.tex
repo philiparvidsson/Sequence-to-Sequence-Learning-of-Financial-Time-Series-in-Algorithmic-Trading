@@ -1,9 +1,13 @@
 \documentclass[11pt]{report}
 
+\usepackage[english]{babel}
 \usepackage[a4paper]{geometry}
 \usepackage{graphicx}
 \usepackage[utf8]{inputenc}
-\usepackage[english]{babel}
+\usepackage[numbers]{natbib}
+
+\bibliographystyle{abbrvnat}
+\setcitestyle{authoryear,open={(},close={)}}
 
 \graphicspath{{../assets/images/}}
 
@@ -32,5 +36,7 @@
 
 \chapter{Introduction}
 \input{chapters/introduction}
+
+\bibliography{references}{}
 
 \end{document}
