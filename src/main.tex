@@ -23,15 +23,16 @@
 
 % We use natbib for Harvard-style references.
 \usepackage[numbers]{natbib}
-% Using abbrvnat gives unnumbered references wich abbreviated names.
+% Using abbrvnat gives unnumbered references with abbreviated names.
 \bibliographystyle{abbrvnat}
 % Example: (Author, Author and Author, 2016)
 \setcitestyle{authoryear,open={(},close={)}}
 
-% The default titles and headings are way too big, so we configure them here.
+% The default titles are way too big, so we configure them here.
 \usepackage{titlesec}
-\titleformat{\chapter}{\bfseries\Large}{\thechapter}{20pt}{}
-\titleformat{\section}{\bfseries\large}{\thesection}{5mm}{}
+\titleformat{\chapter}{\bfseries\Large}{\thechapter}{1em}{}
+\titleformat{\section}{\bfseries\large}{\thesection}{1em}{}
+\titlespacing*{\chapter}{0pt}{10ex}{6ex}
 
 %---------------------------------------
 % GENERAL SETTINGS
@@ -39,18 +40,17 @@
 
 % We use both an indent for paragraphs as well as a slight gap to make them even more clear. This gives a relaxed yet concise look.
 \setlength{\parindent}{1.5em}
-\setlength{\parskip}{0.3em}
-\titlespacing*{\chapter}{0pt}{50pt}{30pt}
+\setlength{\parskip}{0.7ex}
 
-% Line spacing of 1.2 gives a relaxed look without making the text too sparse.
-\linespread{1.2}
+% Line spacing of 1.05. This is the default.
+\linespread{1.05}
 
 \title{
   {\huge{Sequence-to-Sequence Learning of Financial Time Series in Algorithmic
          Trading}}\\
-  \vspace{26mm}
+  \vspace{10ex}
   \includegraphics[width=52mm]{HB_EN_logo1_K}
-  \vspace{8mm}
+  \vspace{4ex}
 }
 
 \author{
@@ -58,7 +58,7 @@
   \and \LARGE{Tobias Ånhed}     \\ \texttt{anhedtobias@gmail.com}
 }
 
-\date{\vspace{20mm}\today}
+\date{\vspace{10ex}\today}
 
 %---------------------------------------
 % DOCUMENT
