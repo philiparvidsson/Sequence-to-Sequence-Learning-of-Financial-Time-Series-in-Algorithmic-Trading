@@ -21,13 +21,22 @@ def bibtex(conf):
     bindir = os.path.relpath(bindir, os.getcwd())
     name = os.path.join(bindir, conf.name)
 
-    run_program('bibtex', [ name ])
-
     os.chdir(cwd)
 
-    # Set the modified time and rerun pdflatex to insert citations properly.
+    # Set the modified time and rerun pdflatex to insert citations properly, if
+    # needed.
+
+    bbl = os.path.join(conf.bindir, conf.name + '.bbl')
+    bibmtime = os.path.getmtime(os.path.join(conf.srcdir, 'bibliography.bib'))
+
+    if os.path.isfile(bbl) and bibmtime < os.path.getmtime(bbl):
+        return
 
     srcfile = os.path.join(conf.srcdir, conf.srcfile)
+
+    os.chdir(conf.srcdir)
+    run_program('bibtex', [ name ])
+    os.chdir(cwd)
 
     atime = os.path.getatime(srcfile)
     mtime = os.path.getmtime(srcfile)

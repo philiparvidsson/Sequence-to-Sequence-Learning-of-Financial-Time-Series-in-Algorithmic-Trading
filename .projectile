@@ -1,4 +1,7 @@
 -#*#
+-*.docx
+-*.pdf
 -*.pyc
 -.#*
 -bin
+-trash
