@@ -6,6 +6,13 @@
 
 Run `python make.py` in the project root directory. If you intend to work continuously on the thesis, run `python make.py watch` to have [pymake2](https://github.com/philiparvidsson/pymake2) automatically recompile the document when a change has been detected.
 
+## Math:
+
+Determinants: https://www.youtube.com/watch?v=Ip3X9LOh2dk
+Eigenvectors and eigenvalues: https://www.youtube.com/watch?v=PFDu9oVAE-g
+Jacobian matrices: https://www.youtube.com/watch?v=Dg6zEpT4OoE
+Hessian matrices: https://www.youtube.com/watch?v=8JPZaCiXmhw
+
 ## Links
 
 * https://student.portal.chalmers.se/sv/chalmersstudier/kandidat-och-examensarbete/examensarbete/Sidor/Planeringsrapport.aspx
