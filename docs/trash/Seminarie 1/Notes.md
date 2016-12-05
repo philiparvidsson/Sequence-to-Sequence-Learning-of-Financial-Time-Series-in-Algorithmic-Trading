@@ -3,8 +3,8 @@
 ### Bakgrund
 
 * Vad har vi valt att skriva om?
-  * Algorithmic trading
-  * Maskininlärning
+  * Algorithmic trading (High-Frequency Trading)
+  * Maskininlärning (RNN med LSTM)
   * Handel med finansiella instrument
 
 * Varför har vi valt att skriva om det?
@@ -15,7 +15,7 @@
 
 ### Problem
 
-* Svårt att få bra data, kostnad för att få bra data för aktiemarknaden (högfrekvens). Vi kommer kör med endast FOREX (valutamarknad).
+* Svårt att få bra data, kostnad för att få bra data för aktiemarknaden (högfrekvens). Vi kommer köra med endast FOREX (valutamarknad).
 * Kompetensutmaning (extremt mycket utbildning krävs)
 * Blivit hindrade av stor arbetsbörda i andra kurser
 
