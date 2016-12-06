@@ -30,6 +30,7 @@ Hessian matrices: https://www.youtube.com/watch?v=8JPZaCiXmhw
 * [TensorFlow tutorial](https://www.youtube.com/watch?v=Ejec3ID_h0w&feature=youtu.be)
 * [Tensorflow and deep learning without a PhD, by Martin Görner](https://www.youtube.com/watch?v=vq2nnJ4g6N0)
 * [Python ML breakdowns](https://pythonprogramming.net/machine-learning-tutorial-python-introduction/)
+* [Machine Learning Course](https://www.youtube.com/channel/UC2__PIf36huAgKFumlOIs6A)
 
 ## Delimitations:
 
