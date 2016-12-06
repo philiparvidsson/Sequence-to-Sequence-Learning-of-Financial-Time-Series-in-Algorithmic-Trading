@@ -24,10 +24,11 @@ def bibtex(conf):
 
     srcfile = os.path.join(conf.srcdir, conf.srcfile)
 
+    bibsrc = os.path.join(os.path.abspath('src'), 'bibliography.bib')
     cwd = os.getcwd()
     os.chdir(conf.bindir)
     # Have to copy this file for this to work with MacTeX.
-    copy(r'..\src\bibliography.bib', r'.\bibliography.bib')
+    copy(bibsrc, r'.\bibliography.bib')
     run_program('bibtex', [ conf.name ])
     delete_file('bibliography.bib')
     os.chdir(cwd)
