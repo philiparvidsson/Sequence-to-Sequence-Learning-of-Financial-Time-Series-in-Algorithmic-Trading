@@ -27,8 +27,9 @@ Hessian matrices: https://www.youtube.com/watch?v=8JPZaCiXmhw
 
 ## Lectures
 
-* TensorFlow tutorial: https://www.youtube.com/watch?v=Ejec3ID_h0w&feature=youtu.be
+* [TensorFlow tutorial](https://www.youtube.com/watch?v=Ejec3ID_h0w&feature=youtu.be)
 * [Tensorflow and deep learning without a PhD, by Martin Görner](https://www.youtube.com/watch?v=vq2nnJ4g6N0)
+* [Python ML breakdowns](https://pythonprogramming.net/machine-learning-tutorial-python-introduction/)
 
 ## Delimitations:
 
