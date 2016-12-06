@@ -39,3 +39,4 @@ Kolla om vi är bättre än slumpen, jämföra med sämre algoritmer.
 annat:
 
 * man ska kunna "förutspå" vart tratten är på väg - Why would you add this to our thesis... :O 
+* förklara övergripande vad nn är (och skillnaden jämfört med rnn) och så vidare
