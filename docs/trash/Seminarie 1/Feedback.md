@@ -36,7 +36,6 @@ Kolla om vi är bättre än slumpen, jämföra med sämre algoritmer.
 * beskriva ltie mer utförligt
 * fylla ut med mer innehåll
 * ~~fixa referenser, apa~~
-*
 
 annat:
 
