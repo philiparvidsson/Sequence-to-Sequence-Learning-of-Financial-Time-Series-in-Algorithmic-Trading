@@ -35,3 +35,7 @@ Kolla om vi är bättre än slumpen, jämföra med sämre algoritmer.
 * fylla ut med mer innehåll
 * fixa referenser, apa
 *
+
+annat:
+
+* man ska kunna "förutspå" vart tratten är på väg
