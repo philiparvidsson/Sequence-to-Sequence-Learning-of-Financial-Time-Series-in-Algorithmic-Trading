@@ -1,3 +1,5 @@
+# Sammanfattning (av 3 timmars tortyr): Fokusera din tratt
+
 Martin & Jim: Våran struktur är bra med röd tråd. Beskriver bra i introduktionen. Mer om tidigare forskning.
 
 ##-----------------------------------------------------------------------
