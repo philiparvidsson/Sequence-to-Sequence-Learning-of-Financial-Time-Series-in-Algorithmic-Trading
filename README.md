@@ -64,3 +64,4 @@ More info: https://www.youtube.com/watch?v=5cqstpRndtI
 
 * Läsa om ANN & RNN, kanske LSTM
 * Prova att implementera lite i TF
+* Vad är AdamOptimizer
