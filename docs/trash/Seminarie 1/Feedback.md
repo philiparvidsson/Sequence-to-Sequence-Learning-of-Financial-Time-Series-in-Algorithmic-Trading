@@ -38,4 +38,4 @@ Kolla om vi är bättre än slumpen, jämföra med sämre algoritmer.
 
 annat:
 
-* man ska kunna "förutspå" vart tratten är på väg
+* man ska kunna "förutspå" vart tratten är på väg - Why would you add this to our thesis... :O 
