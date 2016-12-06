@@ -13,16 +13,6 @@ def all(conf):
 
 @after_target('compile')
 def bibtex(conf):
-    bindir = os.path.abspath(conf.bindir)
-
-    cwd = os.getcwd()
-    os.chdir(conf.srcdir)
-
-    bindir = os.path.relpath(bindir, os.getcwd())
-    name = os.path.join(bindir, conf.name)
-
-    os.chdir(cwd)
-
     # Set the modified time and rerun pdflatex to insert citations properly, if
     # needed.
 
@@ -34,8 +24,12 @@ def bibtex(conf):
 
     srcfile = os.path.join(conf.srcdir, conf.srcfile)
 
-    os.chdir(conf.srcdir)
-    run_program('bibtex', [ name ])
+    cwd = os.getcwd()
+    os.chdir(conf.bindir)
+    # Have to copy this file for this to work with MacTeX.
+    copy(r'..\src\bibliography.bib', r'.\bibliography.bib')
+    run_program('bibtex', [ conf.name ])
+    delete_file('bibliography.bib')
     os.chdir(cwd)
 
     atime = os.path.getatime(srcfile)
