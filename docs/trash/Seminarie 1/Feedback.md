@@ -35,7 +35,7 @@ Kolla om vi är bättre än slumpen, jämföra med sämre algoritmer.
 * varför är det svårt att hitta rätt features
 * beskriva ltie mer utförligt
 * fylla ut med mer innehåll
-* fixa referenser, apa
+* ~~fixa referenser, apa~~
 *
 
 annat:
