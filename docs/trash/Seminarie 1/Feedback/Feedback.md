@@ -1,3 +1,5 @@
+# Sammanfattning (av 3 timmars tortyr): Fokusera din tratt
+
 Martin & Jim: Våran struktur är bra med röd tråd. Beskriver bra i introduktionen. Mer om tidigare forskning.
 
 ##-----------------------------------------------------------------------
@@ -33,10 +35,10 @@ Kolla om vi är bättre än slumpen, jämföra med sämre algoritmer.
 * varför är det svårt att hitta rätt features
 * beskriva ltie mer utförligt
 * fylla ut med mer innehåll
-* fixa referenser, apa
-*
+* ~~fixa referenser, apa~~
 
 annat:
 
 * man ska kunna "förutspå" vart tratten är på väg - Why would you add this to our thesis... :O 
 * förklara övergripande vad nn är (och skillnaden jämfört med rnn) och så vidare
+* bort med rubriker i introduktionskapitlet!
