@@ -39,10 +39,10 @@ def bibtex(conf):
     atime = os.path.getatime(srcfile)
     mtime = os.path.getmtime(srcfile)
 
-    os.utime(srcfile, None)
+    os.utime(srcfile, (sys.maxint, sys.maxint))
     pdflatex.compile(conf)
 
-    os.utime(srcfile, None)
+    os.utime(srcfile, (sys.maxint, sys.maxint))
     pdflatex.compile(conf)
 
     # Restore access and modified times to not break the 'watch' target.
