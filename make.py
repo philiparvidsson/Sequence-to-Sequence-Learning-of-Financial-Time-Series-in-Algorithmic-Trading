@@ -7,6 +7,11 @@ from pymake2 import *
 from pymake2.template.latex import pdflatex
 from pymake2.template.util  import fswatcher
 
+@target(conf=pdflatex.conf)
+@depends_on('compile')
+def publish(conf):
+    run_program('scp', [ 'bin/thesis.pdf', 'philip@philiparvidsson.com:/var/www/html/thesis.pdf'  ])
+
 @default_target(depends=[ 'compile' ])
 def all(conf):
     pass
