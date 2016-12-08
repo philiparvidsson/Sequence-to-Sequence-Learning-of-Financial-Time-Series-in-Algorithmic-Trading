@@ -8,15 +8,15 @@ Informationsbehov: Identifiera och beskriv den empiri/de data som ni behöver (
 4. Måste vi delta i något sammanhang
 
 Design av studien, med utgångspunkt i identifierat behov av empiri
-• Vilken metod/metoder ska användas
-• Varför denna metod/metoder
-• Var ska fältarbetet göras (på företag, ute på stan, vid skrivbordet/datorn ...)
-• Hur ska empiri samlas in
-• Hur ska empiri tolkas/förstås
-• Vilka alternativa metoder är möjliga
+• Vilken metod/metoder ska användas *Så in i helvetes kvantitativ*
+• Varför denna metod/metoder *Vad annars?*
+• Var ska fältarbetet göras (på företag, ute på stan, vid skrivbordet/datorn ...) *At my battlestation*
+• Hur ska empiri samlas in *Hacking forex*
+• Hur ska empiri tolkas/förstås *Neuralt nätverk som kommer ta över världen*
+• Vilka alternativa metoder är möjliga *Too complex shit for other methods*
 
 Metodreflektion
-• Vilka fördelar respektive nackdelar medför valda metoder
+• Vilka fördelar respektive nackdelar medför valda metoder 
 • Hur har ni planerat för att öka tillförlitlighet resp. validitet/reliabilitet (gäller
 kvantitativa metoder) eller, relevans och rigor i form av exempelvis generaliserbarhet och trovärdighet för de kvalitativa metoderna. Se Recker (s. 67 -71, s. 94).
 
