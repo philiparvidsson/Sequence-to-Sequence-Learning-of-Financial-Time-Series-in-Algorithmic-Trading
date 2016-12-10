@@ -25,6 +25,8 @@ Hessian matrices: https://www.youtube.com/watch?v=8JPZaCiXmhw
 
 * Writing an Abstract for a Thesis: https://www.sfu.ca/~jcnesbit/HowToWriteAbstract.htm
 
+* Methodology: http://thesissamples.blogspot.se/2009/04/sample-thesis-chapter-3-research.html
+
 ## Lectures
 
 * [TensorFlow tutorial](https://www.youtube.com/watch?v=Ejec3ID_h0w&feature=youtu.be)

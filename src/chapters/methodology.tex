@@ -1,71 +1,17 @@
-Studien utfördes för att kunna analysera svårigheterna att förutspå framtida värden i en kaotisk marknad med dem senaste teknikerna för neurala nätverk. Då problemet handlar om att tolka stora mängde data gjorde vi en kvantitativ ansats. 
+Studien utfördes för att kunna analysera svårigheterna att förutspå framtida värden i en kaotisk marknad med dem senaste teknikerna för neurala nätverk. Då problemet handlar om att tolka stora mängder data gjorde vi en kvantitativ ansats. 
 
 
 \section{Forskningsmetod} 
-Det neurala nätverket implementerades i Python (Källa till python?) 2.7 med biblioteket Tensorflow (källa dit). Det neurala nätverket var ett Recurrent Neural Network \textit{(RNN)} med Long Short Term Memory \textit{(LSTM)}. Specifika hyperparametrar ändrades under arbetets gång för att optimera nätverket. 
-
-\section{Datainsamling} 
-Studien är avgränsad mot valutahandel då högfrekvens-data över aktier har en hög efterfrågan. Det gör att den är svår, men framförallt dyr, att få tag på. Datan som användes hämtades från \textit{FOREX} och visar högfrekvenshandel med valutor. 
+Skita i denna del då den är snarlik "introt" ovanför och nästa punkt?
 
 \section{Forskningstrategi} 
-FOREX data över valutahandel var det som det neurala nätverket fick träna på och sedan predicera den antingen uppgång, nedgång eller stillestånd för en valutas värde. Detta jämfördes sedan med korrekt data och en slutsats kunde lätt dras angående modellens pricksäckerhet. 
+Den kvantitativa ansatsen gjordes för att tolka all data över valutahandel som det neurala nätverket fick träna på. Vi studerade dess predicerade resultat för en valutas framtida riktning. Riktningen på en valutas värde kunde vara antingen uppgång, nedgång eller stillestånd. 
+
+\section{Valda Tekniker} 
+Det neurala nätverket implementerades i Python (Källa till python?) 2.7 med biblioteket Tensorflow (källa dit). Det neurala nätverket var ett Recurrent Neural Network \textit{(RNN)} med Long Short Term Memory \textit{(LSTM)}. Båda teknikerna (RNN \& LSTM) finns implementerade i detta bibliotek. En avgränsning som behövde göras var just att använda Tensorflow. Det hade varit intressant att göra jämförelser mellan Tensorflow och andra stora bibliotek med implementeringar av neurala nätverk så som Theano, Keras, Lasagne, Blocks, SciKit m.m.. Att göra en egen implementering av ett neuralt nätverk för djupare konfigureringar fick även det prioriteras bort. Specifika hyperparametrar för Tensorflow ändrades under arbetets gång för att optimera nätverket. Olika storlekar på tidsfönstret testades för att hitta ett optimalt sätt för nätverket att förutspå valutan. 
+
+\section{Datainsamling} 
+Studien är avgränsad mot valutahandel då högfrekvens-data över aktier har en hög efterfrågan. Det gör att den är svår, men framförallt dyr, att få tag på. För att kunna genomföra studien behövdes data med hög frekvens samt att den har tillräckligt med parametrar utan att för den delen bli inkomplett. Datan som användes hämtades från foreign exchange market \textit{(FOREX)} och visar högfrekvenshandel med valutor, där fanns parametrarna som behövdes för att träna nätverket. 
 
 \section{Dataanalysmetod} 
-Det gjordes även jämförelser mot andra "state-of-the-art"-algoritmer för att ha möjlighet att utvärdera effektivititen av nätverket. 
-
-
-
-
-
-The study was conducted in order to assess the challenges associated with bla bla bla. We used a quantitative approach.
-
-
-http://thesissamples.blogspot.se/2009/04/sample-thesis-chapter-3-research.html
-
-
-Metod
-* Forskningsmetod
-* Forskningstrategi
-* Valda Tekniker
-* Datainsamling
-* Dataanalysmetod
-
-\textbf{vilken empiri behövs?} Tror inte
-
-\textbf{måste vi prata med folk?} Tror inte
-
-\textbf{måste vi läsa dokument?} Tror inte
-
-\textbf{måste vi titta på det vi ska studera?} Ja?
-
-\textbf{måste vi delta i något sammanhang?} Nej
-
-\textbf{design av studien}
-
-\textbf{vilken metod ska användas?}
-\textit{Så in i helvetes kvantitativ}
-
-\textbf{varför denna metod?}
-\textit{Vad annars?*}
-
-\textbf{var ska fältarbetet göras?}
-\textit{At my battlestation}
-
-\textbf{hur ska empiri samlas?}
-\textit{Hacking forex}
-
-\textbf{hur ska empiri tolkas?}
-\textit{Maskininlärning, närmare bestämt RNN med LSTM}
-
-\textbf{vilka alternativa metoder?}
-\textit{Andra maskininlärnings-algoritmer?}
-
-\textbf{metodreflektion}
-
-\textbf{vilka fördelar respekteive nackdelar medför valda metoder?}
-\textit{Fördelar vet vi inte, därför vi ska testa det?}
-
-\textbf{hur har ni planerat att öka tillförlitlighet resp validitet reliabilitet?}
-\textit{WTF does she mean?}
-
-\textbf{design av studiens genomförande ska vara så detaljerad som möjligt en tumregel är att insamling och bearbetning av empiri och data ska utgöra 20\% av uppsatsen}
+Resultaten som nätverket gav jämfördes sedan med korrekt data för samma tidsperiod och en slutsats kunde lätt dras angående modellens pricksäckerhet. Det gjordes även jämförelser mot andra "state-of-the-art"-algoritmer implementerade i just Tensorflow, detta för att ha möjlighet att utvärdera effektivititen av studiens nätverk. 
