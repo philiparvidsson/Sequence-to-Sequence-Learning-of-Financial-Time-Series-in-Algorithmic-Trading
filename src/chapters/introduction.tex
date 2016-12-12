@@ -21,15 +21,15 @@ The earlier models were unable to predict time series sequences (i.e.
 determining what class a data point belongs to with respect to its movement over
 time, or determining the value of a dependent variable as a function of the data
 point's movement over time), something that was later solved through the
-introduction of \textsc{rnn}s \citep*{rumelhart1986}, which can handle datasets with
-points that have a temporal component dictating their intradependence and
+introduction of \textsc{rnn}s \citep*{rumelhart1986}, which can handle datasets
+with points that have a temporal component dictating their intradependence and
 distribution within the dataset, where each point in the sequence is correlated
 to previous (with respect to time) points through several known and unknown
 factors.
 
 \textsc{rnn}s have historically had problems with vanishing (or exploding)
-gradients, meaning they break down during training and become unable to model
-the problem well \citep{pascanu2012}, but this problem was solved through the
+gradients---meaning they break down during training and become unable to model
+the problem well \citep{pascanu2012}---but this problem was solved through the
 introduction of the \textsc{lstm}-based \textsc{rnn}s \citep*{hochreiter1997}.
 
 Regardless of whether the problem is approached as a matter of classification or
@@ -51,16 +51,23 @@ Although much research is currently being done into the application of
 \textsc{lstm}-based \textsc{rnn}s in financial markets, the research is still in
 its infancy, and although the \textsc{lstm}-based \textsc{rnn} has almost twenty
 years on its neck, it is just now that progress is being made to a significant
-degree.  The volume of data created in the past couple of years---about 90\% of
-all data ever created by humans \citep*{devakunchari2014}---together with
-relatively cheap but very fast graphics processing units (\textsc{gpu}s), have
-opened up the field of machine learning to more cost efficient research.
+degree in practice.  The volume of data created in the past couple of
+years---about 90\% of all data ever created by humans
+\citep*{devakunchari2014}---together with relatively cheap but very fast
+graphics processing units (\textsc{gpu}s), have opened up the field of machine
+learning to more cost efficient research.
 
 More recently, deep \textsc{lstm}-based \textsc{rnn}s have been applied with
 some level of success in predicting future time series sequences from
 historical, sequential datasets; such as predicting the weather for the next
 twenty-four hours \citep*{zaytar2016}, or predicting the next sequence of words
 in natural language \citep*{quoc2014}.
+
+While natural language has obvious structure (\textit{grammar}), weather,
+instead, is seemlingy chaotic, controlled by many, many unknown factors.
+Despite this; considering the success in weather prediction, \textsc{lstm}-based
+\textsc{rnn}s may have the ability to take into account these factors,
+especially given an appropriate set of \textit{featuers}.
 
 \section{Problem statement}
 Financial time series are used ubiquitously in algorithmic trading.  In
