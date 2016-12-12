@@ -1,14 +1,41 @@
-Studien utfördes för att kunna analysera svårigheterna att förutspå framtida värden i en kaotisk marknad med dem senaste teknikerna för neurala nätverk. Då problemet handlar om att tolka stora mängder data gjorde vi en kvantitativ ansats.
+Studien utfördes för att kunna analysera svårigheterna att förutspå framtida
+värden i en kaotisk marknad med dem senaste teknikerna för neurala nätverk. Då
+problemet handlar om att tolka stora mängder data gjorde vi en kvantitativ
+ansats.
 
-\section{Forskningstrategi} 
-Den kvantitativa ansatsen gjordes för att tolka all data över valutahandel som det neurala nätverket fick träna på. Vi studerade dess predicerade resultat för en valutas framtida riktning. Riktningen på en valutas värde kunde vara antingen uppgång, nedgång eller stillestånd. 
+\section{Forskningstrategi}
+Den kvantitativa ansatsen gjordes för att tolka all data över valutahandel som
+det neurala nätverket fick träna på. Vi studerade dess predicerade resultat för
+en valutas framtida riktning. Riktningen på en valutas värde kunde vara antingen
+uppgång, nedgång eller stillestånd.
 
-\section{Valda Tekniker} 
-Det neurala nätverket implementerades i Python 2.7 med biblioteket TensorFlow \citep{tensorflow2015-whitepaper}. Det neurala nätverket var ett Recurrent Neural Network \textit{(RNN)} med Long Short Term Memory \textit{(LSTM)}. Båda teknikerna (RNN \& LSTM) finns implementerade i detta bibliotek. En avgränsning som behövde göras var just att använda TensorFlow. Det hade varit intressant att göra jämförelser mellan TensorFlow och andra stora bibliotek med implementeringar av neurala nätverk så som Theano, Keras, Lasagne, Blocks, SciKit m.m.. Att göra en egen implementering av ett neuralt nätverk för djupare konfigureringar fick även det prioriteras bort. Specifika hyperparametrar för TensorFlow ändrades under arbetets gång för att optimera nätverket. Olika storlekar på tidsfönstret testades för att hitta ett optimalt sätt för nätverket att förutspå valutan. 
+\section{Valda Tekniker}
+Det neurala nätverket implementerades i Python 2.7 med biblioteket TensorFlow
+\citep{tensorflow2015-whitepaper}. Det neurala nätverket var ett Recurrent
+Neural Network \textit{(RNN)} med Long Short Term Memory \textit{(LSTM)}. Båda
+teknikerna (RNN \& LSTM) finns implementerade i detta bibliotek. En avgränsning
+som behövde göras var just att använda TensorFlow. Det hade varit intressant att
+göra jämförelser mellan TensorFlow och andra stora bibliotek med
+implementeringar av neurala nätverk så som Theano, Keras, Lasagne, Blocks,
+SciKit m.m.. Att göra en egen implementering av ett neuralt nätverk för djupare
+konfigureringar fick även det prioriteras bort. Specifika hyperparametrar för
+TensorFlow ändrades under arbetets gång för att optimera nätverket. Olika
+storlekar på tidsfönstret testades för att hitta ett optimalt sätt för nätverket
+att förutspå valutan.
 
 
 \section{Datainsamling}
-Studien är avgränsad mot valutahandel då högfrekvens-data över aktier har en hög efterfrågan. Det gör att den är svår, men framförallt dyr, att få tag på. För att kunna genomföra studien behövdes data med hög frekvens samt att den har tillräckligt med parametrar utan att för den delen bli inkomplett. Datan som användes hämtades från foreign exchange market \textit{(FOREX)} och visar högfrekvenshandel med valutor, där fanns parametrarna som behövdes för att träna nätverket.
+Studien är avgränsad mot valutahandel då högfrekvens-data över aktier har en hög
+efterfrågan. Det gör att den är svår, men framförallt dyr, att få tag på. För
+att kunna genomföra studien behövdes data med hög frekvens samt att den har
+tillräckligt med parametrar utan att för den delen bli inkomplett. Datan som
+användes hämtades från foreign exchange market \textit{(FOREX)} och visar
+högfrekvenshandel med valutor, där fanns parametrarna som behövdes för att träna
+nätverket.
 
 \section{Dataanalysmetod}
-Resultaten som nätverket gav jämfördes sedan med korrekt data för samma tidsperiod och en slutsats kunde lätt dras angående modellens pricksäckerhet. Det gjordes även jämförelser mot andra "state-of-the-art"-algoritmer implementerade i just TensorFlow, detta för att ha möjlighet att utvärdera effektivititen av studiens nätverk.
+Resultaten som nätverket gav jämfördes sedan med korrekt data för samma
+tidsperiod och en slutsats kunde lätt dras angående modellens
+pricksäckerhet. Det gjordes även jämförelser mot andra
+"state-of-the-art"-algoritmer implementerade i just TensorFlow, detta för att ha
+möjlighet att utvärdera effektivititen av studiens nätverk.
