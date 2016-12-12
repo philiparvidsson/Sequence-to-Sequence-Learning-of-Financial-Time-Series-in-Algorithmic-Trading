@@ -17,7 +17,7 @@ virtual model of a biological brain, consisting of neurons, synapses and
 dendrites, modelled by the \textsc{ann} through cells with scalars, activation
 functions and weights.
 
-The earlier models were also unable to predict time series sequences (i.e.
+The earlier models were unable to predict time series sequences (i.e.
 determining what class a data point belongs to with respect to its movement over
 time, or determining the value of a dependent variable as a function of the data
 point's movement over time), something that was later solved through the
@@ -28,8 +28,8 @@ to previous (with respect to time) points through several known and unknown
 factors.
 
 \textsc{rnn}s have historically had problems with vanishing (or exploding)
-gradients (i.e. the \textsc{rnn}s break down during training and become unable
-to learn) \citep{pascanu2012}, but this problem was solved through the
+gradients, meaning they break down during training and become unable to model
+the problem well \citep{pascanu2012}, but this problem was solved through the
 introduction of the \textsc{lstm}-based \textsc{rnn}s \citep*{hochreiter1997}.
 
 Regardless of whether the problem is approached as a matter of classification or
@@ -53,7 +53,7 @@ its infancy, and although the \textsc{lstm}-based \textsc{rnn} has almost twenty
 years on its neck, it is just now that progress is being made to a significant
 degree.  The volume of data created in the past couple of years---about 90\% of
 all data ever created by humans \citep*{devakunchari2014}---together with
-relatively cheap but very fast graphics processing units (\textsc{gpu})s, have
+relatively cheap but very fast graphics processing units (\textsc{gpu}s), have
 opened up the field of machine learning to more cost efficient research.
 
 More recently, deep \textsc{lstm}-based \textsc{rnn}s have been applied with
@@ -69,7 +69,7 @@ numerous variables (such as volatility and returns) in order to time market
 entry and exit.
 
 Since deep \textsc{lstm}-based \textsc{rnn}s have only been applied within the
-algorithmic trading domain to a minimal extent, and since they have shown great
+algorithmic trading domain to a minimal extent, and since they have shown
 success in solving similar problems in other domains, it raises the question
 whether the technique can be used to predict a future sequence of financial
 variables that can be used to time both entry and exit positions within a
