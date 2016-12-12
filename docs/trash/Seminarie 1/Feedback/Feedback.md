@@ -19,7 +19,7 @@ Henrik & Carina: Mer diskussion om våra källor och vad som har gjorts innan. P
 Övriga:
 Kolla om vi är bättre än slumpen, jämföra med sämre algoritmer.
 
-* mer explicit forskningsfråga
+* ~~mer explicit forskningsfråga~~
 * skriv mer om svårigheter
 * skriv mer om tidigare forskning
 * djupare förklaring
