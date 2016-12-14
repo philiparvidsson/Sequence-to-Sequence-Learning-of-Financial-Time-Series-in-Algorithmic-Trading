@@ -1,14 +1,8 @@
-###1. Hur har redigeringen av introduktionen gjort, vilka förbättringar kan ni se i texten, och vilka avsnitt kommer att behöva ytterligare redigering innan slutlig inlämning. *Ska även besvaras själva*
-
-Ändringar är gjorda och texten har nu mycket bra struktur. Det finns endast oviktiga detaljer att anmärka på.
+Ändringar är gjorda efter förra seminariets konstruktiva kritik och texten har nu mycket bra struktur. Det finns endast oviktiga detaljer att anmärka på.
 Tydligare frågeställning vilket tidigare var lite rörigt.
 
-###2. Fungerar problemställningen, är det en fråga som bör besvaras med en kvantitativ eller kvalitativ studie, eller är det ”valfritt”.
+Problemställningen fungerar bra. Vi upplever att frågan bör besvaras kvantitativt på grund av all data men även lite kvalitativ i bemärkelsen att det i slutändan handlar om användarnas upplevelse av rekommendationerna. Så det är upp till författarna själva.
 
-Problemställningen fungerar. Vi upplever att frågan bör besvaras kvalitativ i bemärkelsen att det i slutändan handlar om användarnas upplevelse av rekommendationerna.
+Metodförslaget passar bra, och lämplig information kommer att fås.
 
-###3. Hur väl passar metodförslag med problemställningen? Kommer författarna att få den information som de behöver genom de metoder de föreslår? Om inte, varför då?
-Bra
-
-###4. Hur väl har författarna reflekterat över möjliga svagheter med de olika metodvalen? Vilken metod skulle ni själva välja om ni skulle göra samma studie?
-Kvalitativt men även kvantitativt
+De har reflekterat väl över metoden och vi hade förmodligen valt en liknande metod.
