@@ -5,6 +5,6 @@ Tydligare problemformulering.
 Framförallt kvantitativ, men kan även vara kvalitativ.
 
 ###3. Hur väl passar metodförslag med problemställningen? Kommer författarna att få den information som de behöver genom de metoder de föreslår? Om inte, varför då?
-
+Ja en kvantitativ är det mest rimliga.
 
 ###4. Hur väl har författarna reflekterat över möjliga svagheter med de olika metodvalen? Vilken metod skulle ni själva välja om ni skulle göra samma studie?

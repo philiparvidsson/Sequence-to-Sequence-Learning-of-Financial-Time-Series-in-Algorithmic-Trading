@@ -7,7 +7,7 @@ Mellanrum innan parenteser.
 Upprepar att ni ska använda design science i varje stycke i metodkapitlet
 
 ###2. Fungerar problemställningen, är det en fråga som bör besvaras med en kvantitativ eller kvalitativ studie, eller är det ”valfritt”.
-Bra problemställningen kvantitativ.
+Bra problemställningen, kvantitativ lämpar sig bäst.
 
 ###3. Hur väl passar metodförslag med problemställningen? Kommer författarna att få den information som de behöver genom de metoder de föreslår? Om inte, varför då?
 
