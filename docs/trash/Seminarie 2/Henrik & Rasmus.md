@@ -1,11 +1,10 @@
 ###1. Hur har redigeringen av introduktionen gjort, vilka förbättringar kan ni se i texten, och vilka avsnitt kommer att behöva ytterligare redigering innan slutlig inlämning. *Ska även besvaras själva* 
-Det har skett förändringar
 Tabellen är väldigt konstigt formaterad (Över flera sidor och extremt smala kolumner). Är den ens relevant?
 Fortfarande fel referens för scikit learn.
 Formateringsmissar fortfarande inte åtgärdade (Dubbel-radbryten och dubbel-space).
 Fortfarande engelsk ordbok.
 Mellanrum innan parenteser.
-
+Upprepar att ni ska använda design science i varje stycke i metodkapitlet
 
 ###2. Fungerar problemställningen, är det en fråga som bör besvaras med en kvantitativ eller kvalitativ studie, eller är det ”valfritt”.
 Bra problemställningen kvantitativ.
