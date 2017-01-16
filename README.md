@@ -64,6 +64,7 @@ More info: https://www.youtube.com/watch?v=5cqstpRndtI
 
 ## Todo:
 
+* Strukturera upp källkoden, inläsning m.m.
 * Fundera kring struktur för applikation så att vi kan jobba med data lätt
 * Försök förutspå forexdata i något slags minimal bemärkelse. :-)
 * ~~Läsa om ANN & RNN, kanske LSTM~~

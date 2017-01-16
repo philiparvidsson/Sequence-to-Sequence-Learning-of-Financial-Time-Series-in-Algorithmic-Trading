@@ -1,16 +1,33 @@
+#!/usr/bin/env python
 import pandas as pd
+import matplotlib
 import matplotlib.pyplot as plt
+from matplotlib.finance import candlestick_ohlc
 
-file_path = 'EURUSD_UTC_Ticks_Bid_2015.01.01_2015.01.02.csv'
+FILE = 'EURUSD_UTC_Ticks_Bid_2015.01.01_2015.01.02.csv'
 
-df = pd.read_csv(file_path, parse_dates = [ 'Time' ], index_col = 'Time')
-df.fillna(method = 'backfill')
-print df.head()
+df = pd.read_csv(FILE, parse_dates = [ 'Time' ], index_col = 'Time')
+df.fillna(method = 'ffill')
 
-df[ 'Bid' ].plot()
-df[ 'Ask' ].plot()
+ask = df[ 'Ask' ].resample('1Min').ohlc()
+bid = df[ 'Bid' ].resample('1Min').ohlc()
+ask['t'] = ask.index.map(matplotlib.dates.date2num)
 
-ask =  df[ 'Ask' ].resample('1Min').ohlc()
+fig, ax = plt.subplots()
+fig.subplots_adjust(bottom=0.2)
+ax.xaxis_date()
+
+try:
+	candlestick_ohlc(ax, ask[['t', 'open', 'high', 'low', 'close']].values, width=0.0001)
+except ValueError as e:
+	print e
+	print ask.shape
+
+plt.xlabel('time')
+plt.ylabel('value')
+plt.show()
+
+'''
 ask_vol =  df[ 'AskVolume' ].resample('1Min').sum()
 
 plt.subplot(2, 1, 1)
@@ -37,3 +54,4 @@ df['50d_exma'] = pd.ewma(df['Ask'], span=50)
 
 df.plot(x=df.index, y=['Ask','20d_ma','bol_upper','bol_lower'])
 plt.show()
+'''
