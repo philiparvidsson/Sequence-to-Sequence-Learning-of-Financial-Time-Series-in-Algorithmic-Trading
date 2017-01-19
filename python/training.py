@@ -96,7 +96,7 @@ sys.stdout.write('Training...\n')
 sys.stdout.flush()
 for i, _ in enumerate(range(training_iters)):
 	sys.stdout.write('\r{0:.1f} % learned.'.format((i / training_iters) * 100))
-	sys.stdout.flush()	
+	sys.stdout.flush()
 
 	batch_x = []
 	batch_y = []
@@ -182,7 +182,7 @@ for i, _ in enumerate(range(training_iter)):
 correct_prediction = tf.equal(tf.argmax(y, 1), tf.argmax(y_, 1))
 accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
 
-print('\n{0:.2f} % accuracy'.format((sess.run(accuracy, 
+print('\n{0:.2f} % accuracy'.format((sess.run(accuracy,
 	feed_dict={ x : X, y_ : data})) * 100))
 
 '''
