@@ -97,7 +97,7 @@ sys.stdout.write('Training...\n')
 sys.stdout.flush()
 for i, _ in enumerate(range(training_iters)):
 	sys.stdout.write('\r{0:.1f} % trained.'.format((i / training_iters) * 100))
-	sys.stdout.flush()	
+	sys.stdout.flush()
 
 	batch_x = []
 	batch_y = []
@@ -147,7 +147,7 @@ fails = 0
 
 for i in range(len(data3)):
 	if data2[i] == data3[i]:
-		corr += 1	
+		corr += 1
 	else:
 		fails += 1
 
