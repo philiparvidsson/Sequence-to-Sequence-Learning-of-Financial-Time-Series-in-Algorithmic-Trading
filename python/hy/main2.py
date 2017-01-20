@@ -11,7 +11,7 @@ import tensorflow as tf
 from matplotlib.finance import candlestick_ohlc
 
 # Size of sliding window.
-NUM_EPOCH = 10000
+NUM_EPOCH = 100
 WINDOW_SIZE = 3
 
 def normalize_xs(xs):
@@ -54,7 +54,7 @@ def calc_y(x):
 
 def create_model():
     model = seq2seq.Seq2Seq(depth         = 2,
-                            input_shape   = (WINDOW_SIZE, 5),
+                            input_shape   = (WINDOW_SIZE, 4),
                             output_dim    = 3,
                             output_length = WINDOW_SIZE,
                             peek          = True)
