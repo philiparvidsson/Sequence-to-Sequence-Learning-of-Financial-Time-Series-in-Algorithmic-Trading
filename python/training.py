@@ -15,6 +15,7 @@ from tensorflow.python.ops import rnn, rnn_cell
 os.system('clear')
 
 FILE = 'EURUSD_UTC_Ticks_Bid_2015.01.01_2015.01.02.csv'
+TRESHOLD = 0.0001
 
 df = pd.read_csv(FILE, parse_dates = [ 'Time' ], index_col = 'Time')
 df.fillna(method = 'ffill')
@@ -30,17 +31,18 @@ data = []
 for res in ask.values:
 	if math.isnan(res):
 		res = old_value
-	if res > old_value:
-		data.append('up') # Up
-	elif res == old_value:
-		data.append('no') # No Move
-	elif res < old_value:
-		data.append('down') # Down
+	diff = res - old_value
+	if abs(diff) < TRESHOLD:
+		data.append('no') # Up
+	elif diff <= -TRESHOLD:
+		data.append('down') # No Move
+	elif diff >= TRESHOLD:
+		data.append('up') # Down
 	old_value = res
 
 #data = ask[ 'open' ]
-data2 = data[:-100]
-data = data[:len(data) - 100]
+data2 = data[-200:]
+data = data[:len(data) - 200]
 
 #-----------------------------------------
 
@@ -54,12 +56,12 @@ def one_hot_move(d):
 	return one_hot_cache[d]
 
 learning_rate = 0.001
-training_iters = 500000
-batch_size = 1000
+training_iters = 2000
+batch_size = 100
 
 n_inputs = 3
-n_steps = len(data)
-n_hidden = 128
+n_steps = 100
+n_hidden = 16
 n_classes = 3
 
 x = tf.placeholder(tf.float32, [None, n_steps, n_inputs])
@@ -72,7 +74,6 @@ def do_rnn(x, weights, biases):
 	x = tf.transpose(x, [1, 0, 2])
 	x = tf.reshape(x, [-1, n_inputs])
 	x = tf.split(0, n_steps, x)
-
 	lstm_cell = rnn_cell.BasicLSTMCell(n_hidden, forget_bias = 1.0)
 	outputs, states = rnn.rnn(lstm_cell, x, dtype = tf.float32)
 
@@ -95,47 +96,62 @@ sess.run(init)
 sys.stdout.write('Training...\n')
 sys.stdout.flush()
 for i, _ in enumerate(range(training_iters)):
-	sys.stdout.write('\r{0:.1f} % learned.'.format((i / training_iters) * 100))
+	sys.stdout.write('\r{0:.1f} % trained.'.format((i / training_iters) * 100))
 	sys.stdout.flush()
 
 	batch_x = []
 	batch_y = []
 
 	for j in range(batch_size):
-		k = i * batch_size + j
+		k = (i % int(len(data) / batch_size)) * batch_size + j
 		if k + n_steps >= len(data):
 			break
-
 		xs = []
 		for d in data[k:k+n_steps]:
 			xs.append(one_hot_move(d))
 		batch_x.append(xs)
 		batch_y.append(one_hot_move(data[k + n_steps]))
 
-
-
 	if len(batch_x) > 0:
 		sess.run(optimizer, feed_dict={ x: batch_x, y: batch_y })
 
-data3 = data2
+data3 = data2[:100]
 
-while True:
+
+sys.stdout.write('\n\nTesting...\n')
+sys.stdout.flush()
+
+while len(data3) != len(data2):
 	batch_x = []
 	xs = []
 
-	for d in data2:
+	sys.stdout.write('\r{0:.1f} % tested.'.format(((len(data3) - 100) / (len(data2) - 100)) * 100))
+	sys.stdout.flush()
+	for d in data2[:100]:
 		xs.append(one_hot_move(d))
 
 	batch_x.append(xs)
-
 	d_move = sess.run(tf.argmax(pred, 1), feed_dict = { x : batch_x })
-	data2 = data2[1:]
-	data2.append(movements[d_move[0]])
-	#data3.append(movements[d_move[0]])
-	sys.stdout.write('\n' + movements[d_move[0]])
-	sys.stdout.flush()
+	#data2 = data2[1:]
+	#data2.append(movements[d_move[0]])
+	data3.append(movements[d_move[0]])
+	#sys.stdout.write('\n' + movements[d_move[0]])
+	#sys.stdout.flush()
 	#time.sleep(0.1)
 
+data2 = data2[100:]
+data3 = data3[100:]
+
+corr = 0
+fails = 0
+
+for i in range(len(data3)):
+	if data2[i] == data3[i]:
+		corr += 1
+	else:
+		fails += 1
+
+print('\n\nAccuracy: {0:.1f} %'.format((corr / (corr + fails))* 100))
 '''
 X = ask
 old_value = 0
