@@ -15,7 +15,7 @@ from tensorflow.python.ops import rnn, rnn_cell
 os.system('clear')
 
 FILE = 'EURUSD_UTC_Ticks_Bid_2015.01.01_2015.01.02.csv'
-TRESHOLD = 0.0001
+TRESHOLD = 0.00001
 
 df = pd.read_csv(FILE, parse_dates = [ 'Time' ], index_col = 'Time')
 df.fillna(method = 'ffill')
@@ -152,53 +152,3 @@ for i in range(len(data3)):
 		fails += 1
 
 print('\n\nAccuracy: {0:.1f} %'.format((corr / (corr + fails))* 100))
-'''
-X = ask
-old_value = 0
-data = []
-
-for res in X.values:
-	value = (res[0] + res[3]) * 0.5 # (Open + Close) / 2
-	if math.isnan(value):
-		value = old_value
-	#print value
-	if value > old_value:
-		data.append([1,0,0]) # Up
-	elif value == old_value:
-		data.append([0,1,0]) # No Move
-	elif value < old_value:
-		data.append([0,0,1]) # Down
-	old_value = value
-
-# Create the model
-x = tf.placeholder(tf.float32, [None, 5])
-W = tf.Variable(tf.zeros([5, 3]))
-b = tf.Variable(tf.zeros([3]))
-y = tf.matmul(x, W) + b
-
-# Define loss and optimizer
-y_ = tf.placeholder(tf.float32, [None, 3])
-
-cross_entropy = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(y, y_))
-train_step = tf.train.GradientDescentOptimizer(0.5).minimize(cross_entropy)
-training_iter = 100000
-
-sess = tf.InteractiveSession()
-
-tf.initialize_all_variables().run()
-
-sys.stdout.write('Training...\n')
-sys.stdout.flush()
-for i, _ in enumerate(range(training_iter)):
-	sys.stdout.write('\r{0:.1f} % learned.'.format((i / training_iter) * 100))
-	sys.stdout.flush()
-	batch_xs, batch_ys = [X, data]
-	sess.run(train_step, feed_dict={ x : batch_xs, y_ : batch_ys })
-
-correct_prediction = tf.equal(tf.argmax(y, 1), tf.argmax(y_, 1))
-accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
-
-print('\n{0:.2f} % accuracy'.format((sess.run(accuracy,
-	feed_dict={ x : X, y_ : data})) * 100))
-
-'''
