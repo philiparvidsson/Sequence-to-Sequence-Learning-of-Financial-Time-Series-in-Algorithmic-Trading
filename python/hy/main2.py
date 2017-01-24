@@ -10,9 +10,9 @@ import tensorflow as tf
 
 from matplotlib.finance import candlestick_ohlc
 
-NUM_EPOCH = 2000
-WINDOW_SIZE = 480
-OUT_WINDOW_SIZE = 30
+NUM_EPOCH = 1000000
+WINDOW_SIZE = 20
+OUT_WINDOW_SIZE = 5
 
 import time
 
@@ -71,7 +71,7 @@ def calc_ys(xs):
 #    raise Exception("Invalid x value: {}".format(x))
 
 def create_model():
-    model = seq2seq.Seq2Seq(depth         = 2,
+    model = seq2seq.Seq2Seq(depth         = 1,
                             input_shape   = (WINDOW_SIZE, 1),
                             output_dim    = 1,
                             output_length = OUT_WINDOW_SIZE,
