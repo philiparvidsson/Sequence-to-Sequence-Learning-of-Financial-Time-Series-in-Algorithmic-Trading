@@ -12,7 +12,7 @@ import seq2seq
 #---------------------------------------
 
 def create_model(ds):
-    model = seq2seq.Seq2Seq(depth         = 2,
+    model = seq2seq.Seq2Seq(depth         = config.NUM_LAYERS,
                             input_shape   = (config.INPUT_LENGTH, len(config.FEATURES)),
                             output_dim    = 1,
                             output_length = config.OUTPUT_LENGTH,

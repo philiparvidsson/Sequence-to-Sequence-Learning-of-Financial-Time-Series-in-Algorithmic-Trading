@@ -13,6 +13,9 @@ import numpy as np
 import plot
 import sys
 import time
+import warnings
+
+warnings.filterwarnings("ignore")
 
 #---------------------------------------
 # FUNCTIONS
@@ -88,8 +91,9 @@ if __name__ == "__main__":
         p.plot_ref()
 
         import features
-        c = features.Change(0)
-        c.plot(p, ds_pred, config.PRED_START, config.PRED_START + config.PRED_LENGTH)
+        c = features.SMA(0)
+        c.plot(p, ds2, config.PRED_START, config.PRED_START + config.PRED_LENGTH)
+        c.plot(p, ds_pred, config.PRED_START, config.PRED_START + config.PRED_LENGTH, color='r')
 
         p.show()
     else:
