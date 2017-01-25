@@ -2,6 +2,9 @@
 # CONSTANTS
 #---------------------------------------
 
+# The number of samples to pass to the model on each training iteration.
+BATCH_SIZE = 100
+
 # Data resampling interval.
 RESAMPLE = "1Min"
 
@@ -13,7 +16,7 @@ FEATURES = ["change"]
 #   plot - Plot the results to a graph.
 RESULTS = "plot"
 
-#MODEL = "model.farizrahman4u"
+MODEL = "farizrahman4u"
 
 # The input length, in number of data points. This is the length of inputs
 # passed to the RNN along the temporal axis.
@@ -27,7 +30,15 @@ OUTPUT_LENGTH = 5
 NUM_LAYERS = 1
 
 # Maximum number of iterations to train.
-TRAIN_ITERS = 100000
+TRAIN_ITERS = 1
 
 # Maximum time to train, in minutes. Set to zero to disable time limit.
 TRAIN_TIME = 1
+
+# The index in the aggregated data set to start predicting at. The model will be
+# given access to the n data points before the prediction start, where n is
+# INPUT_LENGTH.
+PRED_START = -60
+
+# The number of data points to predict.
+PRED_LENGTH = 0

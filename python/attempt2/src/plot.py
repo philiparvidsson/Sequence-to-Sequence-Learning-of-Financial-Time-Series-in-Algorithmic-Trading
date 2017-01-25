@@ -11,7 +11,7 @@ import matplotlib.pyplot as plt
 # FUNCTIONS
 #---------------------------------------
 
-def plot(ds):
+def plot_ref(ds):
     fig, ax = plt.subplots()
 
     ax.xaxis_date()
@@ -22,6 +22,7 @@ def plot(ds):
                           findata.LOW_ASK,
                           findata.CLOSE_ASK)
 
-    candlestick_ohlc(ax, quotes, width=0.001)
+    candlestick_ohlc(ax, quotes, width=0.001, colorup='#00ff00', colordown='#ff0000')
 
+def show():
     plt.show()
