@@ -71,7 +71,13 @@ if __name__ == "__main__":
     print
 
     if config.RESULTS == "plot":
-        plot.plot_ref(ds)
-        plot.show()
+        p = plot.Plot(ds)
+        p.plot_ref()
+
+        import features
+        c = features.Change(0)
+        c.plot(p, ds2, -120, -1)
+
+        p.show()
     else:
         raise Exception("unknown results method: " + config.RESULTS)

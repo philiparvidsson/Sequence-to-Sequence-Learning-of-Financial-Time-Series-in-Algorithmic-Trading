@@ -24,7 +24,7 @@ def load(filename):
     rows = []
 
     for i in range(len(df_1min)):
-        row = findata.DataRow(
+        row = findata.DataRow([
             df_time[i],
             df_ohlc["Ask"]["open"].values[i],
             df_ohlc["Bid"]["open"].values[i],
@@ -36,7 +36,7 @@ def load(filename):
             df_ohlc["Bid"]["close"].values[i],
             df_vol["AskVolume"].values[i],
             df_vol["BidVolume "].values[i]
-        )
+        ])
 
         rows.append(row)
 

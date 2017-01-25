@@ -8,21 +8,28 @@ from matplotlib.finance import candlestick_ohlc
 import matplotlib.pyplot as plt
 
 #---------------------------------------
-# FUNCTIONS
+# CLASSES
 #---------------------------------------
 
-def plot_ref(ds):
-    fig, ax = plt.subplots()
+class Plot(object):
+    def __init__(self, ds):
+        self.ds = ds
+        self.fig = plt.figure()
+        self.ax = self.fig.add_subplot(1, 1, 1)
 
-    ax.xaxis_date()
+        self.ax.xaxis_date()
 
-    quotes = ds.transform(findata.TIME,
-                          findata.OPEN_ASK,
-                          findata.HIGH_ASK,
-                          findata.LOW_ASK,
-                          findata.CLOSE_ASK)
+    def draw_line(self, x1, y1, x2, y2, color):
+        self.ax.plot((x1, x2), (y1, y2), color=color)
 
-    candlestick_ohlc(ax, quotes, width=0.001, colorup='#00ff00', colordown='#ff0000')
+    def plot_ref(self):
+        quotes = self.ds.transform(findata.TIME,
+                                   findata.OPEN_ASK,
+                                   findata.HIGH_ASK,
+                                   findata.LOW_ASK,
+                                   findata.CLOSE_ASK)
 
-def show():
-    plt.show()
+        candlestick_ohlc(self.ax, quotes, width=0.001, colorup='#e0ffe0', colordown='#ffe0e0')
+
+    def show(self):
+        plt.show()

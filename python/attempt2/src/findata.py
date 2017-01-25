@@ -19,7 +19,7 @@ VOLUME_BID = 10
 #---------------------------------------
 
 class DataRow(object):
-    def __init__(self, *args):
+    def __init__(self, args):
         self.raw = args
 
     @property
@@ -54,7 +54,6 @@ class DataRow(object):
 
     @property
     def volume_bid(self): return self.raw[VOLUME_BID]
-
 
 class DataSet(object):
     def __init__(self, rows):
