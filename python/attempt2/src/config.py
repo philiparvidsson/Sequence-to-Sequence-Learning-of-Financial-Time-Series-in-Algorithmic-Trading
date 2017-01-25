@@ -30,15 +30,15 @@ OUTPUT_LENGTH = 5
 NUM_LAYERS = 1
 
 # Maximum number of iterations to train.
-TRAIN_ITERS = 1
+TRAIN_ITERS = 1000
 
 # Maximum time to train, in minutes. Set to zero to disable time limit.
-TRAIN_TIME = 1
+TRAIN_TIME = 10000
 
 # The index in the aggregated data set to start predicting at. The model will be
 # given access to the n data points before the prediction start, where n is
 # INPUT_LENGTH.
-PRED_START = -60
+PRED_START = -240
 
 # The number of data points to predict.
-PRED_LENGTH = 0
+PRED_LENGTH = 240

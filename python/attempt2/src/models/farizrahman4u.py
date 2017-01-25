@@ -24,6 +24,11 @@ def create_model(ds):
 
     model.idx = 0
 
+    pred = model.predict
+    def predict(x):
+        x = np.array([x])
+        return np.array(pred(x)[0])
+
     def train_once():
         a = model.idx
         b = model.idx + config.INPUT_LENGTH
@@ -39,6 +44,7 @@ def create_model(ds):
 
         model.fit(x, y, nb_epoch=1, verbose=False)
 
+    model.predict    = predict
     model.train_once = train_once
 
     return model

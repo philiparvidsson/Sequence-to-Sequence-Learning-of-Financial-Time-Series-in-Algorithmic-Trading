@@ -64,7 +64,10 @@ class DataSet(object):
         a = []
 
         for row in self.rows:
-            a.extend(row.raw)
+            if row:
+                a.append(row.raw)
+            else:
+                a.append(None)
 
         return a
 

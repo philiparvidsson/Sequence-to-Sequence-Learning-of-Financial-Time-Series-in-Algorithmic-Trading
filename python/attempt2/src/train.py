@@ -7,7 +7,9 @@
 import config
 import csvdata
 import features
+import findata
 import imp
+import numpy as np
 import plot
 import sys
 import time
@@ -41,7 +43,7 @@ if __name__ == "__main__":
     t = 0.0
     last_t = time.time()
     update_timer = 0.0
-    while it < config.TRAIN_ITERS/config.BATCH_SIZE:
+    while it < config.TRAIN_ITERS:
         it += 1
 
         dt = time.time() - last_t
@@ -58,7 +60,7 @@ if __name__ == "__main__":
 
         update_timer += dt
         if update_timer >= 0.1:
-            sys.stdout.write("\r training [{:02d}:{:02d}:{:02d}, {}/{}] ... ".format(hours, mins, secs, it, config.TRAIN_ITERS/config.BATCH_SIZE))
+            sys.stdout.write("\r training [{:02d}:{:02d}:{:02d}, {}/{}] ... ".format(hours, mins, secs, it, config.TRAIN_ITERS))
             sys.stdout.flush()
 
             if config.TRAIN_TIME > 0 and t/60.0 > config.TRAIN_TIME:
@@ -70,13 +72,24 @@ if __name__ == "__main__":
 
     print
 
+    pred = np.array(model.data[config.PRED_START-config.INPUT_LENGTH:config.PRED_START])
+
+    while len(pred) < config.INPUT_LENGTH + config.PRED_LENGTH:
+        p = model.predict(pred[-config.INPUT_LENGTH:])
+        pred = np.concatenate((pred, p), axis=0)
+
+    ds_pred = findata.DataSet([None for i in xrange(ds2.num_rows)])
+
+    for i in xrange(config.INPUT_LENGTH, len(pred)):
+        ds_pred.rows[i - config.INPUT_LENGTH + config.PRED_START] = findata.DataRow(pred[i])
+
     if config.RESULTS == "plot":
         p = plot.Plot(ds)
         p.plot_ref()
 
         import features
         c = features.Change(0)
-        c.plot(p, ds2, -120, -1)
+        c.plot(p, ds_pred, config.PRED_START, config.PRED_START + config.PRED_LENGTH)
 
         p.show()
     else:
