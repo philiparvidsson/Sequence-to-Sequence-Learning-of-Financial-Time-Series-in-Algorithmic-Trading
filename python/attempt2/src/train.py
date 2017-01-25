@@ -11,6 +11,9 @@ import imp
 import plot
 import sys
 import time
+import warnings
+
+warnings.filterwarnings("ignore")
 
 #---------------------------------------
 # FUNCTIONS
@@ -75,8 +78,8 @@ if __name__ == "__main__":
         p.plot_ref()
 
         import features
-        c = features.Change(0)
-        c.plot(p, ds2, -120, -1)
+        c = features.SMA(1)
+        c.plot(p, ds2, 0, ds2.num_rows)
 
         p.show()
     else:

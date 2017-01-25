@@ -17,8 +17,8 @@ def load(filename):
 
     df = pd.read_csv(filename, index_col="Time", parse_dates=["Time"])
     df_1min = df.resample(config.RESAMPLE)
-    df_ohlc = df_1min.ohlc()
-    df_vol  = df_1min.sum()
+    df_ohlc = df_1min.ohlc().fillna(method="ffill")
+    df_vol  = df_1min.sum().fillna(method="ffill")
     df_time = df_ohlc.index.map(matplotlib.dates.date2num)
 
     rows = []

@@ -24,16 +24,58 @@ class Change(object):
         return (a - b)/b
 
     def plot(self, p, ds, a, b, color='b'):
-        x1 = p.ds.rows[a].raw[findata.TIME]
+        x1 = p.ds.rows[a].time
         y1 = p.ds.rows[a].close_ask
 
         for i in xrange(a+1, b):
-            x2 = p.ds.rows[i].raw[findata.TIME]
+            x2 = p.ds.rows[i].time
             y2 = y1 + ds.rows[i].raw[self.idx]
 
             p.draw_line(x1, y1, x2, y2, color)
 
             x1, y1 = x2, y2
+
+class SMA(object):
+    def __init__(self, idx):
+        self.idx = idx
+        self.SMA = 50
+
+    def calc(self, ds, i):
+        points = 0
+        sum = 0
+        
+        for i in range(i, i - self.SMA, -1):
+            if i < 0: 
+                break
+
+            sum += ds.rows[i].close_bid
+            points += 1
+
+        return sum / points
+
+    def plot(self, p, ds, a, b, color='b'):
+        x1 = p.ds.rows[a].time
+        y1 = p.ds.rows[a].close_bid
+
+        for i in xrange(a+1, b):
+            x2 = p.ds.rows[i].time
+            y2 = ds.rows[i].raw[self.idx]
+
+            p.draw_line(x1, y1, x2, y2, color)
+
+            x1, y1 = x2, y2
+
+class RSI(object):
+    def __init__(self, idx):
+        self.idx = idx
+        self.time_frame = 1
+
+    def calc(self, ds, i):
+        pass
+
+    def plot(self, p, ds, a, b, color='b'):
+        pass
+
 
 #---------------------------------------
 # FUNCTIONS

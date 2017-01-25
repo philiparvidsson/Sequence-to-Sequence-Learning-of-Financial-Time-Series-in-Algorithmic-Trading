@@ -9,7 +9,7 @@ BATCH_SIZE = 100
 RESAMPLE = "1Min"
 
 # Specifies which features to use (see featuers.py)
-FEATURES = ["Change"]
+FEATURES = ["Change", "SMA"]
 
 # The method to use to present the results.
 # Methods:
