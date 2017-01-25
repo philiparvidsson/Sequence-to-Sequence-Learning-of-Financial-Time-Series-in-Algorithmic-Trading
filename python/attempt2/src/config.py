@@ -33,7 +33,7 @@ NUM_LAYERS = 1
 TRAIN_ITERS = 1000
 
 # Maximum time to train, in minutes. Set to zero to disable time limit.
-TRAIN_TIME = 10000
+TRAIN_TIME = 10
 
 # The index in the aggregated data set to start predicting at. The model will be
 # given access to the n data points before the prediction start, where n is
