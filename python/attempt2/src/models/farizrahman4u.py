@@ -11,10 +11,10 @@ import seq2seq
 # FUNCTIONS
 #---------------------------------------
 
-def create_model(ds):
+def create_model(ds, dim):
     model = seq2seq.Seq2Seq(depth         = config.NUM_LAYERS,
-                            input_shape   = (config.INPUT_LENGTH, len(config.FEATURES)),
-                            output_dim    = 1,
+                            input_shape   = (config.INPUT_LENGTH, dim),
+                            output_dim    = dim,
                             output_length = config.OUTPUT_LENGTH,
                             peek          = True)
 
@@ -30,17 +30,24 @@ def create_model(ds):
         return np.array(pred(x)[0])
 
     def train_once():
-        a = model.idx
-        b = model.idx + config.INPUT_LENGTH
-        c = b + config.OUTPUT_LENGTH
+        x = []
+        y = []
 
-        x = np.array([model.data[a:b]])
-        y = np.array([model.data[b:c]])
+        for i in xrange(config.BATCH_SIZE):
+            a = model.idx
+            b = a + config.INPUT_LENGTH
+            c = b + config.OUTPUT_LENGTH
 
-        model.idx += 1
+            model.idx += 1
 
-        if c >= ds.num_rows:
-            model.idx = 0
+            if c >= ds.num_rows:
+                model.idx = 0
+
+            x.append(model.data[a:b])
+            y.append(model.data[b:c])
+
+        x = np.array(x)
+        y = np.array(y)
 
         model.fit(x, y, nb_epoch=1, verbose=False)
 
