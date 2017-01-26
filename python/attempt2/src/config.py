@@ -9,7 +9,7 @@ BATCH_SIZE = 100
 RESAMPLE = "1Min"
 
 # Specifies which features to use (see featuers.py)
-FEATURES = ["Change", "Trend", "CloseBid"]
+FEATURES = ["Change", "Trend", "CloseBid", "SMA"]
 
 # The method to use to present the results.
 # Methods:
@@ -31,10 +31,10 @@ OUTPUT_LENGTH = 5
 NUM_LAYERS = 1
 
 # Maximum number of iterations to train.
-TRAIN_ITERS = 10000000
+TRAIN_ITERS = 10000
 
 # Maximum time to train, in minutes. Set to zero to disable time limit.
-TRAIN_TIME = 1
+TRAIN_TIME = 15
 
 # The index in the aggregated data set to start predicting at. The model will be
 # given access to the n data points before the prediction start, where n is

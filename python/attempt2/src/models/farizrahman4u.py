@@ -18,7 +18,7 @@ def create_model(ds, dim):
                             output_length = config.OUTPUT_LENGTH,
                             peek          = True)
 
-    model.compile(loss="mse", optimizer="adam")
+    model.compile(loss="mse", optimizer="rmsprop")
 
     model.data = np.array(ds.to_array())
 

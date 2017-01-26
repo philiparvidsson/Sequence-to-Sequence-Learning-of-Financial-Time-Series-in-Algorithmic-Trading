@@ -46,7 +46,7 @@ def do_pred(model):
 def present_results(fts, ds, ds2, model):
     pred = do_pred(model)
 
-    c = ["#ff0000", "#00ff00", "#0000ff", "#ff7f00", "#7fff00", "#007fff", "#00ff7f", "#ff00ff"]
+    c = ["#ff0000", "#00ff00", "#0000ff", "#ff7f00", "#007fff", "#00ff7f", "#ff00ff", "#000000"]
     legend = []
 
     if config.RESULTS == "plot":
