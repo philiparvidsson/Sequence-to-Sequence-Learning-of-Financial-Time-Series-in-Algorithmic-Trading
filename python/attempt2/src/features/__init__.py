@@ -4,6 +4,9 @@
 
 from ask    import *
 from bid    import *
+from misc   import *
+from onehot import *
+from sma    import *
 from volume import *
 
 #---------------------------------------
@@ -15,12 +18,12 @@ def calc(ds):
 
     fts = []
     idx = 0
-    for feature_name in config.FEATURES:
-        f = globals()[feature_name](idx)
+    for f in config.FEATURES:
+        f.set_idx(idx)
         fts.append(f)
         idx += f.dim
 
-    print "calculating features:", ", ".join(config.FEATURES)
+    print "calculating features:", ", ".join([x.name for x in fts])
 
     for i in range(ds.num_rows):
         values = []

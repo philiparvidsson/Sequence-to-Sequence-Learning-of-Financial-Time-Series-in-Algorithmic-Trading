@@ -54,6 +54,7 @@ def present_results(fts, ds, ds2, model):
         "#ff3f00",
         "#007fff",
         "#00ff7f",
+        "#00e0e0",
         "#ff00ff",
         "#000000",
         "#606060",
@@ -68,6 +69,9 @@ def present_results(fts, ds, ds2, model):
 
         ci = 0
         for f in fts:
+            if f.hidden:
+                continue
+
             c1 = c[ci % len(c)]
             #ci += 1
             c2 = c[ci % len(c)]
@@ -76,7 +80,7 @@ def present_results(fts, ds, ds2, model):
             f.plot(p, ds2, config.PRED_START, config.PRED_START + config.PRED_LENGTH, color=c1)
             f.plot(p, pred, config.PRED_START, config.PRED_START + config.PRED_LENGTH, color=c2, is_pred=True)
 
-            legend.append((c1, type(f).__name__))
+            legend.append((c1, f.name))
             #legend.append((c2, type(f).__name__ + " (pred)"))
 
         p.set_legend(legend)

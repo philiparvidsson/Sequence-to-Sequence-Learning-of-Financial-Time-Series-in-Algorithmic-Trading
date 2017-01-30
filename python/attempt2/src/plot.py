@@ -28,9 +28,9 @@ class Plot(object):
 
     def draw_line(self, x1, y1, x2, y2, color, is_pred=False):
         if is_pred:
-            self.ax.plot((x1, x2), (y1, y2), color=color, linestyle="dotted")
-        else:
             self.ax.plot((x1, x2), (y1, y2), color=color)
+        else:
+            self.ax.plot((x1, x2), (y1, y2), color=color, linestyle="dashed")
 
     def pause(self, t=0.0):
         plt.pause(t)

@@ -11,55 +11,61 @@ import numpy as np
 # CLASSES
 #---------------------------------------
 
-class RelVolumeAsk(object):
-    def __init__(self, idx):
-        self.idx = idx
+class VolumeAsk(object):
+    def __init__(self, scale=1.0, hidden=False):
+        self.scale = scale
+        self.hidden = hidden
         self.dim = 1
-        self.mul = 10000.0
+        self.name = "VolAsk"
+
+    def set_idx(self, idx):
+        self.idx = idx
+
+    def get_first_y(self, p, ds, i):
+        return p.ds.rows[i].volume_ask*self.scale
 
     def calc(self, ds, i):
-        if i == 0:
-            return [0.0]
-
-        a = ds.rows[i].volume_ask
-        b = ds.rows[i-1].volume_ask
-
-        return [self.mul*(a - b)/b]
+        return [ds.rows[i].volume_ask*self.scale]
 
     def plot(self, p, ds, a, b, color='b', is_pred=False):
+        if self.hidden: return
+
         x1 = p.ds.rows[a].time
-        y1 = p.ds.rows[a].volume_ask
+        y1 = self.get_first_y(p, ds, a)
 
         for i in xrange(a+1, b):
             x2 = p.ds.rows[i].time
-            y2 = y1 + ds.rows[i].raw[self.idx]/self.mul
+            y2 = ds.rows[i].raw[self.idx]
 
             p.draw_line(x1, y1, x2, y2, color, is_pred)
 
             x1, y1 = x2, y2
 
-class RelVolumeBid(object):
-    def __init__(self, idx):
-        self.idx = idx
+class VolumeBid(object):
+    def __init__(self, scale=1.0, hidden=False):
+        self.scale = scale
+        self.hidden = hidden
         self.dim = 1
-        self.mul = 10000.0
+        self.name = "VolBid"
+
+    def set_idx(self, idx):
+        self.idx = idx
+
+    def get_first_y(self, p, ds, i):
+        return p.ds.rows[i].volume_bid*self.scale
 
     def calc(self, ds, i):
-        if i == 0:
-            return [0.0]
-
-        a = ds.rows[i].volume_bid
-        b = ds.rows[i-1].volume_bid
-
-        return [self.mul*(a - b)/b]
+        return [ds.rows[i].volume_bid*self.scale]
 
     def plot(self, p, ds, a, b, color='b', is_pred=False):
+        if self.hidden: return
+
         x1 = p.ds.rows[a].time
-        y1 = p.ds.rows[a].volume_bid
+        y1 = self.get_first_y(p, ds, a)
 
         for i in xrange(a+1, b):
             x2 = p.ds.rows[i].time
-            y2 = y1 + ds.rows[i].raw[self.idx]/self.mul
+            y2 = ds.rows[i].raw[self.idx]
 
             p.draw_line(x1, y1, x2, y2, color, is_pred)
 

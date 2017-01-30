@@ -11,7 +11,7 @@ import numpy as np
 # CONSTANTS
 #---------------------------------------
 
-LAYERS = (128, 128)
+LAYERS = (128, 64, 32)
 
 #---------------------------------------
 # FUNCTIONS
@@ -38,7 +38,7 @@ def create_model(ds, dim):
     model.add(Dense(output_dim=dim))
     #model.add(Activation("softmax"))
 
-    model.compile(loss="mean_squared_error", optimizer="adam")
+    model.compile(loss="mean_squared_error", optimizer="rmsprop")
     model.summary()
 
     model.data = np.array(ds.to_array())
