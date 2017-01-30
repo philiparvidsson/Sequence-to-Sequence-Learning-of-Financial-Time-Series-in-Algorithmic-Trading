@@ -8,6 +8,7 @@ import config
 import csvdata
 import features
 import findata
+import testdata
 import imp
 import numpy as np
 import plot
@@ -46,7 +47,19 @@ def do_pred(model):
 def present_results(fts, ds, ds2, model):
     pred = do_pred(model)
 
-    c = ["#ff0000", "#00ff00", "#0000ff", "#ff7f00", "#007fff", "#00ff7f", "#ff00ff", "#000000"]
+    c = [
+        "#ff0000",
+        "#00ff00",
+        "#0000ff",
+        "#ff3f00",
+        "#007fff",
+        "#00ff7f",
+        "#ff00ff",
+        "#000000",
+        "#606060",
+        "#b0b0b0"
+    ]
+
     legend = []
 
     if config.RESULTS == "plot":
@@ -56,15 +69,15 @@ def present_results(fts, ds, ds2, model):
         ci = 0
         for f in fts:
             c1 = c[ci % len(c)]
-            ci += 1
+            #ci += 1
             c2 = c[ci % len(c)]
             ci += 1
 
             f.plot(p, ds2, config.PRED_START, config.PRED_START + config.PRED_LENGTH, color=c1)
-            f.plot(p, pred, config.PRED_START, config.PRED_START + config.PRED_LENGTH, color=c2)
+            f.plot(p, pred, config.PRED_START, config.PRED_START + config.PRED_LENGTH, color=c2, is_pred=True)
 
             legend.append((c1, type(f).__name__))
-            legend.append((c2, type(f).__name__ + " (pred)"))
+            #legend.append((c2, type(f).__name__ + " (pred)"))
 
         p.set_legend(legend)
 
@@ -78,6 +91,7 @@ def present_results(fts, ds, ds2, model):
 
 if __name__ == "__main__":
     ds = csvdata.load("../data/EURUSD_UTC_Ticks_Bid_2015.01.01_2015.01.02.csv")
+    #ds = testdata.load_sinedata(3.0)
     dim, fts, ds2 = features.calc(ds)
 
     m = imp.load_source(config.MODEL, "models/" + config.MODEL + ".py")
@@ -101,8 +115,8 @@ if __name__ == "__main__":
 
         mins  = int(t/60.0)
         hours = int(mins/60.0)
-        mins -= hours*60
         secs  = int(t - mins*60)
+        mins -= hours*60
 
         update_timer += dt
         if update_timer >= 0.1:

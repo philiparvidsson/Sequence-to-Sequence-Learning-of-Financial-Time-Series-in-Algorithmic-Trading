@@ -11,6 +11,85 @@ import numpy as np
 # CLASSES
 #---------------------------------------
 
+class TimeOfDay(object):
+    def __init__(self, idx):
+        self.idx = idx
+        self.dim = 1
+
+    def calc(self, ds, i):
+        t = ds.rows[i].time
+        return [t]
+
+class RelSMA10(object):
+    def __init__(self, idx):
+        self.idx = idx
+        self.sma = 10
+        self.dim = 1
+        self.mul = 10000.0
+
+    def calc_sma(self, ds, i):
+        n = 0
+        avg = 0.0
+
+        for i in range(i, i - self.sma, -1):
+            if i < 0:
+                break
+
+            avg += ds.rows[i].close_bid
+            n += 1
+
+        return avg/n
+
+    def calc(self, ds, i):
+        if i == 0:
+            return [0.0]
+
+        a = self.calc_sma(ds, i)
+        b = self.calc_sma(ds, i-1)
+
+        return [self.mul*(a - b) / b]
+
+    def plot(self, p, ds, a, b, color='b', is_pred=False):
+        x1 = p.ds.rows[a].time
+        y1 = p.ds.rows[a].close_bid
+
+        for i in xrange(a+1, b):
+            x2 = p.ds.rows[i].time
+            y2 = y1 + ds.rows[i].raw[self.idx]/self.mul
+
+            p.draw_line(x1, y1, x2, y2, color, is_pred)
+
+            x1, y1 = x2, y2
+
+
+class AbsChange(object):
+    def __init__(self, idx):
+        self.idx = idx
+        self.dim = 1
+        self.mul = 10000.0
+
+    def calc(self, ds, i):
+        if i == 0:
+            return [0.0]
+
+        a = ds.rows[i].close_bid
+        b = ds.rows[i-1].close_bid
+
+        return [self.mul*(a - b)]
+
+    def plot(self, p, ds, a, b, color='b', is_pred=False):
+        x1 = p.ds.rows[a].time
+        y1 = p.ds.rows[a].close_bid
+
+        for i in xrange(a+1, b):
+            x2 = p.ds.rows[i].time
+            y2 = y1 + ds.rows[i].raw[self.idx]/self.mul
+
+            p.draw_line(x1, y1, x2, y2, color, is_pred)
+
+            x1, y1 = x2, y2
+
+
 class CloseBid(object):
     def __init__(self, idx):
         self.idx = idx
@@ -19,7 +98,7 @@ class CloseBid(object):
     def calc(self, ds, i):
         return [ds.rows[i].close_bid]
 
-    def plot(self, p, ds, a, b, color):
+    def plot(self, p, ds, a, b, color, is_pred=False):
         x1 = p.ds.rows[a].time
         y1 = ds.rows[a].raw[self.idx]
 
@@ -27,12 +106,11 @@ class CloseBid(object):
             x2 = p.ds.rows[i].time
             y2 = ds.rows[i].raw[self.idx]
 
-            p.draw_line(x1, y1, x2, y2, color)
+            p.draw_line(x1, y1, x2, y2, color, is_pred)
 
             x1, y1 = x2, y2
 
-
-class Trend(object):
+class Trend1H(object):
     def __init__(self, idx):
         self.idx = idx
         self.dim = 3
@@ -51,7 +129,7 @@ class Trend(object):
 
         return [1, 0, 0]
 
-    def plot(self, p, ds, a, b, color='b'):
+    def plot(self, p, ds, a, b, color='b', is_pred=False):
         x1 = p.ds.rows[a].time
         y1 = p.ds.rows[a].open_bid
 
@@ -62,41 +140,42 @@ class Trend(object):
 
             y2 = y1 + 0.0001 * (np.argmax(t)-1)
 
-            p.draw_line(x1, y1, x2, y2, color)
+            p.draw_line(x1, y1, x2, y2, color, is_pred)
 
             x1, y1 = x2, y2
 
 
-class Change(object):
+class RelChange(object):
     def __init__(self, idx):
         self.idx = idx
         self.dim = 1
+        self.mul = 10000.0
 
     def calc(self, ds, i):
         if i == 0:
             return [0.0]
 
-        a = ds.rows[i].close_ask
-        b = ds.rows[i-1].close_ask
+        a = ds.rows[i].close_bid
+        b = ds.rows[i-1].close_bid
 
-        return [1000.0*(a - b)/b]
+        return [self.mul*(a - b)/b]
 
-    def plot(self, p, ds, a, b, color='b'):
+    def plot(self, p, ds, a, b, color='b', is_pred=False):
         x1 = p.ds.rows[a].time
-        y1 = p.ds.rows[a].close_ask
+        y1 = p.ds.rows[a].close_bid
 
         for i in xrange(a+1, b):
             x2 = p.ds.rows[i].time
-            y2 = y1 + ds.rows[i].raw[self.idx]/1000.0
+            y2 = y1 + ds.rows[i].raw[self.idx]/self.mul
 
-            p.draw_line(x1, y1, x2, y2, color)
+            p.draw_line(x1, y1, x2, y2, color, is_pred)
 
             x1, y1 = x2, y2
 
-class SMA(object):
+class SMA10(object):
     def __init__(self, idx):
         self.idx = idx
-        self.sma = 30
+        self.sma = 10
         self.dim = 1
 
     def calc(self, ds, i):
@@ -112,7 +191,7 @@ class SMA(object):
 
         return [100.0*avg / n]
 
-    def plot(self, p, ds, a, b, color='b'):
+    def plot(self, p, ds, a, b, color='b', is_pred=False):
         x1 = p.ds.rows[a].time
         y1 = ds.rows[a].raw[self.idx]/100.0
 
@@ -120,7 +199,7 @@ class SMA(object):
             x2 = p.ds.rows[i].time
             y2 = ds.rows[i].raw[self.idx]/100.0
 
-            p.draw_line(x1, y1, x2, y2, color)
+            p.draw_line(x1, y1, x2, y2, color, is_pred)
 
             x1, y1 = x2, y2
 
@@ -132,7 +211,7 @@ class RSI(object):
     def calc(self, ds, i):
         pass
 
-    def plot(self, p, ds, a, b, color='b'):
+    def plot(self, p, ds, a, b, color='b', is_pred=False):
         pass
 
 

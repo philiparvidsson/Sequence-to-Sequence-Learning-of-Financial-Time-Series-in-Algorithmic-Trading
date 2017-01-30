@@ -4,29 +4,42 @@
 
 import config
 
+import keras
 import numpy as np
-import seq2seq
 
 #---------------------------------------
 # CONSTANTS
 #---------------------------------------
 
-NUM_LAYERS = 1
+LAYERS = (128, 128)
 
 #---------------------------------------
 # FUNCTIONS
 #---------------------------------------
 
 def create_model(ds, dim):
-    print "creating farizrahman4u model..."
+    print "creating keraslstm model..."
 
-    model = seq2seq.Seq2Seq(depth         = NUM_LAYERS,
-                            input_shape   = (config.INPUT_LENGTH, dim),
-                            output_dim    = dim,
-                            output_length = config.OUTPUT_LENGTH,
-                            peek          = True)
+    model = keras.models.Sequential()
 
-    model.compile(loss="mse", optimizer="rmsprop")
+    Activation = keras.layers.core.Activation
+    LSTM       = keras.layers.recurrent.LSTM
+    Dense      = keras.layers.core.Dense
+    Dropout    = keras.layers.core.Dropout
+    Softmax    = keras.layers.core.Activation
+
+    model.add(LSTM(input_dim=dim, output_dim=LAYERS[0], return_sequences=True))
+    model.add(Dropout(0.2))
+
+    for i in range(1, len(LAYERS)):
+        model.add(LSTM(LAYERS[i], return_sequences=True))
+        model.add(Dropout(0.2))
+
+    model.add(Dense(output_dim=dim))
+    #model.add(Activation("softmax"))
+
+    model.compile(loss="mean_squared_error", optimizer="adam")
+    model.summary()
 
     model.data = np.array(ds.to_array())
     model.idx = 0
@@ -34,7 +47,7 @@ def create_model(ds, dim):
     pred = model.predict
     def predict(x):
         x = np.array([x])
-        return np.array(pred(x)[0])
+        return np.array(pred(x)[0][:config.OUTPUT_LENGTH])
 
     def train_once():
         x = []
@@ -45,7 +58,7 @@ def create_model(ds, dim):
         for i in xrange(config.BATCH_SIZE):
             a = model.idx
             b = a + config.INPUT_LENGTH
-            c = b + config.OUTPUT_LENGTH
+            c = b + config.INPUT_LENGTH
 
             model.idx += 1
 
@@ -63,7 +76,7 @@ def create_model(ds, dim):
 
         model.fit(x, y, batch_size=config.BATCH_SIZE, nb_epoch=1, verbose=False)
 
-    model.predict    = predict
+    model.predict = predict
     model.train_once = train_once
 
     return model
