@@ -16,20 +16,12 @@ RESAMPLE = "1Min"
 
 # Specifies which features to use.
 FEATURES = [
+	RSI(CloseBid(), width=28, hidden=True),
+	
     RelativeChange(CloseBid(), scale=10000.0),
-    OneHotTrend(CloseBid(), threshold=0.000005, hidden=True),
-    SMA(RelativeChange(CloseBid(), scale=10000.0), width=10, hidden=True),
-
-    RelativeChange(CloseAsk(), scale=10000.0),
-    OneHotTrend(CloseAsk(), threshold=0.000005, hidden=True),
-    SMA(RelativeChange(CloseAsk(), scale=10000.0), width=10, hidden=True),
-
-    RelativeChange(VolumeAsk(), scale=0.01, hidden=True),
-    OneHotTrend(VolumeAsk(), threshold=0.000005, hidden=True),
-    SMA(RelativeChange(VolumeAsk(), scale=0.01), width=10, hidden=True),
+    SMA(RelativeChange(CloseBid(), scale=10000.0), width=10),
 
     RelativeChange(VolumeBid(), scale=0.01, hidden=True),
-    OneHotTrend(VolumeBid(), threshold=0.000005, hidden=True),
     SMA(RelativeChange(VolumeBid(), scale=0.01), width=10, hidden=True),
 ]
 
@@ -54,7 +46,7 @@ OUTPUT_LENGTH = 5
 TRAIN_ITERS = 100000
 
 # Maximum time to train, in minutes. Set to zero to disable time limit.
-TRAIN_TIME = 10
+TRAIN_TIME = 5
 
 # The index in the aggregated data set to start predicting at. The model will be
 # given access to the n data points before the prediction start, where n is
