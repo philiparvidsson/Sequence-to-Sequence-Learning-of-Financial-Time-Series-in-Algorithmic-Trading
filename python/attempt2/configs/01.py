@@ -45,6 +45,7 @@ OUTPUT_LENGTH = 60
 TRAIN_ITERS = 1000000
 
 # Maximum time to train, in minutes. Set to zero to disable time limit.
+<<<<<<< HEAD:python/attempt2/configs/01.py
 TRAIN_TIME = 1
 
 # Indicates whether, after a single prediction step has been performed, the
@@ -53,6 +54,9 @@ TRAIN_TIME = 1
 # prediction, but, in a real trading scenario, limit the trader to predicting
 # CONFIG_OUTPUT data points into the future.
 PRED_REINSERT_REAL = True
+=======
+TRAIN_TIME = 5
+>>>>>>> da61293951abdb6179744aeb3510e942c83de921:python/attempt2/src/config.py
 
 # The index in the aggregated data set to start predicting at. The model will be
 # given access to the n data points before the prediction start, where n is
