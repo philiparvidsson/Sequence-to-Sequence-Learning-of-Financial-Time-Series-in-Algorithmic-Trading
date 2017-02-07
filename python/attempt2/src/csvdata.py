@@ -2,7 +2,6 @@
 # IMPORTS
 #---------------------------------------
 
-import config
 import findata
 
 import matplotlib
@@ -12,7 +11,7 @@ import pandas as pd
 # FUNCTIONS
 #---------------------------------------
 
-def load(filename):
+def load(config, filename):
     print "loading dataset:", filename
 
     df = pd.read_csv(filename, index_col="Time", parse_dates=["Time"])

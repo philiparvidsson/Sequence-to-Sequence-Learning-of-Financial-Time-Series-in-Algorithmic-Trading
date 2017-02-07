@@ -2,22 +2,14 @@
 # IMPORTS
 #---------------------------------------
 
-import config
-
 import keras
 import numpy as np
-
-#---------------------------------------
-# CONSTANTS
-#---------------------------------------
-
-LAYERS = (128, 64, 32)
 
 #---------------------------------------
 # FUNCTIONS
 #---------------------------------------
 
-def create_model(ds, dim):
+def create_model(config, ds, dim):
     print "creating keraslstm model..."
 
     model = keras.models.Sequential()
@@ -28,11 +20,11 @@ def create_model(ds, dim):
     Dropout    = keras.layers.core.Dropout
     Softmax    = keras.layers.core.Activation
 
-    model.add(LSTM(input_dim=dim, output_dim=LAYERS[0], return_sequences=True))
+    model.add(LSTM(input_dim=dim, output_dim=config.LAYERS[0], return_sequences=True))
     model.add(Dropout(0.2))
 
-    for i in range(1, len(LAYERS)):
-        model.add(LSTM(LAYERS[i], return_sequences=True))
+    for i in range(1, len(config.LAYERS)):
+        model.add(LSTM(config.LAYERS[i], return_sequences=True))
         model.add(Dropout(0.2))
 
     model.add(Dense(output_dim=dim))
@@ -41,8 +33,9 @@ def create_model(ds, dim):
     model.compile(loss="mean_squared_error", optimizer="rmsprop")
     model.summary()
 
-    model.data = np.array(ds.to_array())
+    model.data = np.array(ds.to_array()[:config.PRED_START])
     model.idx = 0
+    model.num_passes = 0
 
     pred = model.predict
     def predict(x):
@@ -62,8 +55,10 @@ def create_model(ds, dim):
 
             model.idx += 1
 
-            if c >= ds.num_rows:
+            if c >= len(model.data):
+                idx = -1
                 model.idx = 0
+                model.num_passes += 1
                 continue
 
             x.append(model.data[a:b])

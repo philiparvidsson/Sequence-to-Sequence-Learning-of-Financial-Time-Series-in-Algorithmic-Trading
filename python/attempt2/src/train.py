@@ -4,15 +4,22 @@
 # IMPORTS
 #---------------------------------------
 
-import config
+import imp
+import os
+import sys
+
+#import config
+# h4x0rz $upr3m3!!!
+cname = os.path.splitext(os.path.basename(sys.argv[1]))[0]
+config = imp.load_source(cname, sys.argv[1])
+
+#config.TRAIN_TIME = 60*4
+
 import csvdata
 import features
 import findata
-import testdata
-import imp
 import numpy as np
-import plot
-import sys
+import testdata
 import time
 import warnings
 
@@ -31,75 +38,46 @@ def print_head(ds):
     print
 
 def do_pred(model):
-    pred = np.array(model.data[config.PRED_START-config.INPUT_LENGTH:config.PRED_START])
+    pred_in = np.array(model.data[config.PRED_START-config.INPUT_LENGTH:config.PRED_START])
+    pred_out = np.array(model.data[config.PRED_START-config.INPUT_LENGTH:config.PRED_START])
 
-    while len(pred) < config.INPUT_LENGTH + config.PRED_LENGTH:
-        p = model.predict(pred[-config.INPUT_LENGTH:])
-        pred = np.concatenate((pred, p), axis=0)
+    while len(pred_out) < config.INPUT_LENGTH + config.PRED_LENGTH:
+        p = model.predict(pred_in[-config.INPUT_LENGTH:])
+
+        if config.PRED_REINSERT_REAL:
+            a = config.PRED_START-config.INPUT_LENGTH+len(pred_in)
+            b = a + config.OUTPUT_LENGTH
+            p2 = np.array(model.data[a:b])
+            pred_in  = np.concatenate((pred_in , p2), axis=0)
+        else:
+            pred_in  = np.concatenate((pred_in , p), axis=0)
+
+        pred_out = np.concatenate((pred_out, p), axis=0)
 
     ds_pred = findata.DataSet([None for i in xrange(len(model.data))])
 
-    for i in xrange(config.INPUT_LENGTH, len(pred)):
-        ds_pred.rows[i - config.INPUT_LENGTH + config.PRED_START] = findata.DataRow(pred[i])
+    for i in xrange(config.INPUT_LENGTH, len(pred_out)):
+        ds_pred.rows[i - config.INPUT_LENGTH + config.PRED_START] = findata.DataRow(pred_out[i])
 
     return ds_pred
-
-def present_results(fts, ds, ds2, model):
-    pred = do_pred(model)
-
-    c = [
-        "#ff0000",
-        "#00ff00",
-        "#0000ff",
-        "#ff3f00",
-        "#007fff",
-        "#00ff7f",
-        "#00e0e0",
-        "#ff00ff",
-        "#000000",
-        "#606060",
-        "#b0b0b0"
-    ]
-
-    legend = []
-
-    if config.RESULTS == "plot":
-        p = plot.Plot(ds)
-        p.plot_ref()
-
-        ci = 0
-        for f in fts:
-            if f.hidden:
-                continue
-
-            c1 = c[ci % len(c)]
-            #ci += 1
-            c2 = c[ci % len(c)]
-            ci += 1
-
-            f.plot(p, ds2, config.PRED_START, config.PRED_START + config.PRED_LENGTH, color=c1)
-            f.plot(p, pred, config.PRED_START, config.PRED_START + config.PRED_LENGTH, color=c2, is_pred=True)
-
-            legend.append((c1, f.name))
-            #legend.append((c2, type(f).__name__ + " (pred)"))
-
-        p.set_legend(legend)
-
-        p.show()
-    else:
-        raise Exception("unknown results method: " + config.RESULTS)
 
 #---------------------------------------
 # ENTRY POINT
 #---------------------------------------
 
 if __name__ == "__main__":
-    ds = csvdata.load("../data/EURUSD_UTC_Ticks_Bid_2015.01.01_2015.01.02.csv")
+    ds = csvdata.load(config, "../data/EURUSD_UTC_Ticks_Bid_2015.01.01_2015.01.02.csv")
     #ds = testdata.load_sinedata(3.0)
-    dim, fts, ds2 = features.calc(ds)
+    dim, fts, ds2 = features.calc(ds, config)
 
-    m = imp.load_source(config.MODEL, "models/" + config.MODEL + ".py")
-    model = m.create_model(ds2, dim)
+    m = imp.load_source(config.MODEL  , os.path.join("models", config.MODEL) + ".py")
+    r = imp.load_source(config.RESULTS, os.path.join("results", config.RESULTS) + ".py")
+
+    print "config: ", config.__name__
+    print "model: ", m.__name__
+    print "results: ", r.__name__
+
+    model = m.create_model(config, ds2, dim)
 
     print
 
@@ -123,8 +101,8 @@ if __name__ == "__main__":
         mins -= hours*60
 
         update_timer += dt
-        if update_timer >= 0.1:
-            sys.stdout.write("\r training [{:02d}:{:02d}:{:02d}, {:.2f}%] ... ".format(hours, mins, secs, 100.0*it/config.TRAIN_ITERS))
+        if update_timer >= 1.0:
+            sys.stdout.write("\r training [{:02d}:{:02d}:{:02d}, {}, {}, {:.2f}%] ... ".format(hours, mins, secs, it, model.num_passes, 100.0*it/config.TRAIN_ITERS))
             sys.stdout.flush()
 
             if config.TRAIN_TIME > 0 and t/60.0 > config.TRAIN_TIME:
@@ -134,4 +112,5 @@ if __name__ == "__main__":
 
     print
 
-    present_results(fts, ds, ds2, model)
+    model.save(os.path.join("..", "out", config.__name__ + ".h5"))
+    r.present(do_pred(model), fts, ds, ds2, model, config)

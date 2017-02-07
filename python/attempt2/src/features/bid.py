@@ -2,7 +2,6 @@
 # IMPORTS
 #---------------------------------------
 
-import config
 import csvdata
 import findata
 import numpy as np

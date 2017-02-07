@@ -2,8 +2,6 @@
 # IMPORTS
 #---------------------------------------
 
-import config
-
 import numpy as np
 import seq2seq
 
@@ -17,7 +15,7 @@ NUM_LAYERS = 1
 # FUNCTIONS
 #---------------------------------------
 
-def create_model(ds, dim):
+def create_model(config, ds, dim):
     print "creating farizrahman4u model..."
 
     model = seq2seq.Seq2Seq(depth         = NUM_LAYERS,
@@ -28,8 +26,9 @@ def create_model(ds, dim):
 
     model.compile(loss="mse", optimizer="rmsprop")
 
-    model.data = np.array(ds.to_array())
+    model.data = np.array(ds.to_array()[:config.PRED_START])
     model.idx = 0
+    model.num_passes = 0
 
     pred = model.predict
     def predict(x):
@@ -49,8 +48,10 @@ def create_model(ds, dim):
 
             model.idx += 1
 
-            if c >= ds.num_rows:
+            if c >= len(model.data):
+                idx = -1
                 model.idx = 0
+                model.num_passes += 1
                 continue
 
             x.append(model.data[a:b])

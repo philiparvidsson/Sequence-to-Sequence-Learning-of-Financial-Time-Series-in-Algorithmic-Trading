@@ -2,7 +2,6 @@
 # IMPORTS
 #---------------------------------------
 
-import config
 import findata
 
 import datetime
@@ -16,7 +15,7 @@ import random
 # FUNCTIONS
 #---------------------------------------
 
-def load_lineardata():
+def load_lineardata(config):
     print "generating linear data..."
 
     a = []
@@ -68,7 +67,7 @@ def load_lineardata():
 
     return findata.DataSet(rows)
 
-def load_sinedata(mul):
+def load_sinedata(config, mul):
     print "generating sine data..."
 
     a = []

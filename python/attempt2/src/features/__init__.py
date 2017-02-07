@@ -13,7 +13,7 @@ from volume import *
 # FUNCTIONS
 #---------------------------------------
 
-def calc(ds):
+def calc(ds, config):
     rows = []
 
     fts = []
