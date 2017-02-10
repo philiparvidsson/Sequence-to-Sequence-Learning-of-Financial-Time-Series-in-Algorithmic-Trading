@@ -4,6 +4,7 @@
 
 import keras
 import numpy as np
+import os
 
 #---------------------------------------
 # FUNCTIONS
@@ -42,6 +43,21 @@ def create_model(config, ds, dim):
         x = np.array([x])
         return np.array(pred(x)[0][:config.OUTPUT_LENGTH])
 
+    old_save = model.save
+    def save(is_final=False):
+        fn = os.path.join("..", "out", config.__name__ + ".h5")
+        fnbak = fn + ".bak"
+
+        if os.path.isfile(fn):
+            if os.path.isfile(fnbak):
+                os.remove(fnbak)
+
+            os.rename(fn, fnbak)
+
+        old_save(fn)
+        if is_final and os.path.isfile(fnbak):
+            os.remove(fnbak)
+
     def train_once():
         x = []
         y = []
@@ -72,6 +88,7 @@ def create_model(config, ds, dim):
         model.fit(x, y, batch_size=config.BATCH_SIZE, nb_epoch=1, verbose=False)
 
     model.predict = predict
+    model.save = save
     model.train_once = train_once
 
     return model

@@ -32,7 +32,7 @@ class Plot(object):
         if is_pred:
             self.ax.plot((x1, x2), (y1, y2), color=color)
         else:
-            self.ax.plot((x1, x2), (y1, y2), color=color, linestyle="dashed")
+            self.ax.plot((x1, x2), (y1, y2), color=color, linestyle="dotted")
 
     def pause(self, t=0.0):
         plt.pause(t)
@@ -66,14 +66,14 @@ def present(pred, fts, ds, ds2, model, config):
         "#ff0000",
         "#00ff00",
         "#0000ff",
-        "#ff3f00",
+        "#000000",
         "#007fff",
         "#00ff7f",
         "#00e0e0",
         "#ff00ff",
-        "#000000",
         "#606060",
-        "#b0b0b0"
+        "#b0b0b0",
+        "#ff3f00",
     ]
 
     legend = []

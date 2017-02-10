@@ -9,6 +9,7 @@ from features import *
 #---------------------------------------
 
 # NOTE: LAYERS FOR KERASLSTM MODEL
+# EACH ELEMENT IS THE NUMBER OF NEURONS IN THAT LAYER
 LAYERS = (1024, 512, 512, 256, 256, 256, 256)
 
 # The number of samples to pass to the model on each training iteration.
@@ -19,9 +20,10 @@ RESAMPLE = "1Min"
 
 # Specifies which features to use.
 FEATURES = [
-    RelativeChange(CloseBid(), scale=10000.0),
-    OneHotTrend(CloseBid(), threshold=0.000005),
-    RelativeChange(SMA(CloseBid(), width=10), scale=10000.0),
+    RelativeChange(SMA(CloseBid(), width=5), scale=2500.0),
+    RelativeChange(SMA(VolumeBid(), width=5), plotscale=0.001),
+    RelativeChange(RSI(CloseBid(), width=30), scale=5.0, plotscale=0.1),
+    RelativeChange(SMA(Spread(CloseBid(), CloseAsk()), width=5), scale=2.0, plotscale=0.001)
 ]
 
 # The method to use to present the results.
@@ -42,10 +44,10 @@ INPUT_LENGTH = 60
 OUTPUT_LENGTH = 60
 
 # Maximum number of iterations to train.
-TRAIN_ITERS = 1000000
+TRAIN_ITERS = 10
 
 # Maximum time to train, in minutes. Set to zero to disable time limit.
-TRAIN_TIME = 1
+TRAIN_TIME = 10*60
 
 # Indicates whether, after a single prediction step has been performed, the
 # predicted data should be replaced with *real* data before being reinsrted into

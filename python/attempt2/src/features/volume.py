@@ -21,7 +21,8 @@ class VolumeAsk(object):
         self.idx = idx
 
     def get_first_y(self, p, ds, i):
-        return p.ds.rows[i].volume_ask*self.scale
+        # ALWAYS USE CLSOE BID AS FIRST Y TO AVOID COMPRESSING Y-AXIS IN PLOT
+        return p.ds.rows[i].close_bid*self.scale
 
     def calc(self, ds, i):
         return [ds.rows[i].volume_ask*self.scale]
@@ -51,7 +52,8 @@ class VolumeBid(object):
         self.idx = idx
 
     def get_first_y(self, p, ds, i):
-        return p.ds.rows[i].volume_bid*self.scale
+        # ALWAYS USE CLSOE BID AS FIRST Y TO AVOID COMPRESSING Y-AXIS IN PLOT
+        return p.ds.rows[i].close_bid*self.scale
 
     def calc(self, ds, i):
         return [ds.rows[i].volume_bid*self.scale]

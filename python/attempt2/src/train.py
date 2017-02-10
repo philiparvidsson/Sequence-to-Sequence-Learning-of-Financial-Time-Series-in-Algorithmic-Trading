@@ -13,7 +13,7 @@ import sys
 cname = os.path.splitext(os.path.basename(sys.argv[1]))[0]
 config = imp.load_source(cname, sys.argv[1])
 
-#config.TRAIN_TIME = 60*4
+#config.TRAIN_TIME = 2
 
 import csvdata
 import features
@@ -33,9 +33,29 @@ def print_head(ds):
     print "showing first few lines of calculated features:"
 
     for i in range(5):
-        print "    ", ds2.rows[i].raw
+        print "    ", ds.rows[i].raw
 
     print
+
+    print "showing min/max/avg for columns:"
+
+    avgs = [0.0 for _ in ds.rows[0].raw]
+    mins = [9999999.0 for _ in ds.rows[0].raw]
+    maxs = [-9999999.0 for _ in ds.rows[0].raw]
+
+    for i in range(ds.num_rows):
+        r = ds.rows[i]
+        for j in range(len(r.raw)):
+            avgs[j] += r.raw[j] / ds.num_rows
+            if r.raw[j] < mins[j]:
+                mins[j] = r.raw[j]
+
+            if r.raw[j] > maxs[j]:
+                maxs[j] = r.raw[j]
+
+
+    for i in range(len(avgs)):
+        print "col", i, ":", "min={}, max={}, avg={}".format(mins[i], maxs[i], avgs[i])
 
 def do_pred(model):
     pred_in = np.array(model.data[config.PRED_START-config.INPUT_LENGTH:config.PRED_START])
@@ -77,15 +97,23 @@ if __name__ == "__main__":
     print "model: ", m.__name__
     print "results: ", r.__name__
 
+    print_head(ds2)
+
     model = m.create_model(config, ds2, dim)
 
     print
+
+    if config.TRAIN_TIME > 0:
+        sys.stderr.write("will now run for {:.2f} hours".format(config.TRAIN_TIME/60.0))
+        sys.stderr.write("\n")
+        sys.stderr.flush()
 
     it = 0
     t = 0.0
     last_t = time.time()
     update_timer = 0.0
-    while it < config.TRAIN_ITERS:
+    save_timer = 0.0
+    while config.TRAIN_TIME > 0 or it < config.TRAIN_ITERS:
         it += 1
 
         dt = time.time() - last_t
@@ -100,17 +128,31 @@ if __name__ == "__main__":
         secs  = int(t - mins*60)
         mins -= hours*60
 
+        save_timer += dt
+        if save_timer >= 600.0:
+            model.save()
+            save_timer = 0.0
+
         update_timer += dt
         if update_timer >= 1.0:
-            sys.stdout.write("\r training [{:02d}:{:02d}:{:02d}, {}, {}, {:.2f}%] ... ".format(hours, mins, secs, it, model.num_passes, 100.0*it/config.TRAIN_ITERS))
-            sys.stdout.flush()
+            if config.TRAIN_TIME > 0:
+                sys.stderr.write("\r training [time={:02d}:{:02d}:{:02d}, iterations={}, epochs={}] ... ".format(hours, mins, secs, it, model.num_passes))
+            else:
+                sys.stderr.write("\r training [time={:02d}:{:02d}:{:02d}, iterations={}, epochs={}, {:.2f}%] ... ".format(hours, mins, secs, it, model.num_passes, 100.0*it/config.TRAIN_ITERS))
+            sys.stderr.flush()
 
             if config.TRAIN_TIME > 0 and t/60.0 > config.TRAIN_TIME:
+                sys.stdout.write(" training [time={:02d}:{:02d}:{:02d}, iterations={}, epochs={}] ... ".format(hours, mins, secs, it, model.num_passes))
+                sys.stdout.flush()
                 break
 
             update_timer = 0.0
 
+    if config.TRAIN_TIME <= 0:
+        sys.stdout.write(" training [time={:02d}:{:02d}:{:02d}, iterations={}, epochs={}] ... ".format(hours, mins, secs, it, model.num_passes))
+        sys.stdout.flush()
+
     print
 
-    model.save(os.path.join("..", "out", config.__name__ + ".h5"))
+    model.save(True)
     r.present(do_pred(model), fts, ds, ds2, model, config)
