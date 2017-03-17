@@ -769,15 +769,15 @@ computation:
 
 \begin{Figure}
   \begin{align*}
-    \delta_{cell} & =
-      \frac{\partial E_{total}}{\partial \mathit{out_{cell}}} \times
-      \frac{\partial \mathit{out_{cell}}}{\partial \mathit{net_{cell}}} \\
+    \delta_c & =
+      \frac{\partial E_{total}}{\partial \mathit{out_c}} \times
+      \frac{\partial \mathit{out_c}}{\partial \mathit{net_c}} \\
                  & =
-      \frac{\partial E_{total}}{\partial \mathit{out_{cell}}} \times
-      \sigma'({net}_{cell}) \\
-    \frac{\partial E_{total}}{\partial \mathit{weight_{cell}}} & =
-      \delta_{cell} \times
-      \frac{\partial \mathit{net_{cell}}}{\partial \mathit{weight_{cell}}}
+      \frac{\partial E_{total}}{\partial \mathit{out_c}} \times
+      \sigma'({net}_c) \\
+    \frac{\partial E_{total}}{\partial \mathit{weight_c}} & =
+      \delta_c \times
+      \frac{\partial \mathit{net_c}}{\partial \mathit{weight_c}}
   \end{align*}
   \captionof{eqn}{Gradient calculation formula.}
 \end{Figure}
