@@ -31,6 +31,6 @@ Despite this, we feel that we were very successful in developing high-quality so
 Lastly, and perhaps most importantly, we learned a tremendous amount during the time of writing the thesis and performing the research, greatly expanding our knowledge in the fields of machine learning and finance.
 
 ## Contributors
-* Philip Arvidsson - *author* [philiparvidsson](https://github.com/philiparvidsson)
-* Tobias Ånhed - *author* - [tobiasanhed](https://github.com/tobiasanhed)
-* Patrick Gabrielsson - *supervisor* - [PAGA](http://www.hb.se/en/Shortcuts/Contact/Employee/PAGA)
+* Philip Arvidsson - *Author* - [philiparvidsson](https://github.com/philiparvidsson)
+* Tobias Ånhed - *Author* - [tobiasanhed](https://github.com/tobiasanhed)
+* Patrick Gabrielsson - *Supervisor* - [PAGA](http://www.hb.se/en/Shortcuts/Contact/Employee/PAGA)
