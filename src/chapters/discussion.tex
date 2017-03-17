@@ -1,0 +1,77 @@
+\end{multicols}
+\chapter{Discussion}
+\begin{multicols}{2}
+
+\noindent Looking at the graphs (see Appendix A, B, C and D), already is it
+evident that the application of our \textsc{lstm}-based \textsc{rnn} using
+sequence-to-sequence learning is vastly superior to the traditional \textsc{rnn}
+model.  This is also confirmed by looking at the evaluation measurements
+(Table~\ref{tbl:results}) performed on the predictions: The \textsc{lstm}
+outperforms the \textsc{rnn} on most evaluation measures, proving to be more
+much more apt at modeling market behavior compared to the traditional
+\textsc{rnn}.
+
+\section{Financial Market Prediction}
+
+Reaching back to the original research question; using the set of features
+selected for the experiments setup in this thesis, the \textsc{lstm}-based
+\textsc{rnn} was unable to model market behavior to such a degree that a
+definitive call could be made as to whether the model generalized for the market
+regime encountered during training or not.
+
+Many attempts have been made at predicting financial market behavior by modeling
+price returns, with some displaying a certain level of success.  In any case, a
+larger data set could potentially provide more information, allowing the
+\textsc{lstm} generalize better for market behavior.  That, however, would also
+require a much larger model (i.e. a deeper model configuration with many more
+cells in each layer) which, in turn, would place further demands on
+computational capacity and time, which, in the end, put a limit on our ability
+to pursue the problem further.  The more complex the model, and the larger the
+dataset, the worse the \textsc{rnn} performs in comparison to the \textsc{lstm}.
+
+\section{Visualizations}
+
+Although the predictions are visualized \textit{(see Appendix A, B, C and D)} in
+the form of graphs, there are interesting things to note.  Below, we reason
+about the behavior of the models' ability in predicting market behavior.
+
+The vanishing gradient problem becomes somewhat evident in the graphs (see
+Appendix A, B, C and D).  The \textsc{rnn} is unable to produce much more than a
+simple recurring pattern.
+
+\subsubsection{Appendix A}
+
+The predictions produced by the \textsc{lstm} (solid line) are intuitively
+accurate and could possibly have been used for trading.  The large fall is not
+predicted by the model, but the predicted price movements still follow the
+market trend well up to that point.
+
+Looking at the \textsc{rnn} (dashed line) predictions, there is no evident
+generalization of market behavior.
+
+\subsubsection{Appendix B}
+
+Again, we see the general market trend predicted to an extent by the
+\textsc{lstm}, giving an interesting result.
+
+Looking at the \textsc{rnn} predictions again, we find no evidence of the market
+behavior being modeled to any useful extent.
+
+\subsubsection{Appendix C}
+
+Although not giving accurate predictions, the \textsc{lstm} seems to have
+modeled the \textit{double top chart pattern}: After two tops and a price fall
+breaking the bottom of the trend channel; the model predicts a continuation of
+the price drop, as would likely be expected by a human trader performing
+technical trading analysis on the chart.
+
+The \textsc{rnn} produces no useful predictions.
+
+\subsubsection{Appendix D}
+
+Here, we see the \textsc{lstm} model the general market trend over the
+prediction period and onwards, but missing an important opportunity for
+profitable returns; the large price movement during the prediction period.  The
+\textsc{lstm} did not model the market behavior well enough.
+
+The \textsc{rnn} produces no useful predictions.

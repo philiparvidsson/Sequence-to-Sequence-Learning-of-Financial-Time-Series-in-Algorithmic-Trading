@@ -1,0 +1,40 @@
+\end{multicols}
+\chapter{Related Work}
+\begin{multicols}{2}
+
+\noindent As much as we were inspired by related work, we also encountered the
+problem of breaking new ground during our research.  Especially in regard to the
+application of the \textsc{lstm}-based \textsc{rnn} on financial markets using
+sequence-to-sequence learning, finding related work turned out to be somewhat
+difficult.
+
+\section{Financial Market Predictions}
+
+Enormous amounts of research has been made into the prediction of financial
+markets, and we have waded through a large volume of it during the thesis work.
+We found \citet{vahala2016} particularly helpful in approaching the problem of
+financial market prediction using the methods in this thesis.
+
+When it comes to feature extraction, we did not have the time to test all
+features that we felt were applicable to the problem.  A very interesting and
+inspiring piece of work in regard to feature extraction is \citet{Chan201305}.
+
+\section{Sequence-to-Sequence Learning}
+
+The bulk volume of research on sequence-to-sequence learning has been done on
+machine translation.  Although algorithmic trading is an entirely different
+problem, the model configuration is very similar in its setup.  The theory
+behind sequence-to-sequence learning with an \textsc{lstm} model is covered by
+\citet{sutskever2014sequence}, wherein the practical application of
+sequence-to-sequence learning is explained as well.
+
+\citet{chollet2015}---specifically the Keras
+documentation---provides a deep insight into the intricacies of
+sequence-to-sequence learning and its practical applications.
+
+Although modeling the stochastic processes on financial markets is a different
+(and perhaps more complex) problem compared to modeling long-term weather,
+\citet{zaytar2016} provides a deeper insight into the theory of the
+\textsc{lstm}-based \textsc{rnn}, detailing it further than what was done in
+this thesis, as well was providing a solid foundation for understanding the use
+of the \textsc{lstm} in modeling and predicting stochastic processes.

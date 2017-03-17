@@ -1,0 +1,124 @@
+\documentclass[a4paper,9pt]{extreport}
+
+%---------------------------------------
+% PACKAGES
+% ---------------------------------------
+
+\usepackage{etoolbox}
+\newcommand{\ubold}{\fontseries{b}\selectfont} % renew def. for non-extended bold font
+\robustify\ubold
+
+\usepackage{siunitx}
+\sisetup{detect-weight=true, detect-family=true}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=black,
+    urlcolor=black
+}
+
+\usepackage{algorithmicx}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage[autostyle]{csquotes}
+
+\usepackage[final]{pdfpages}
+
+% Align for equations.
+\usepackage{amsmath}
+
+% English rules for punctuation.
+\usepackage[english]{babel}
+
+\usepackage[font=small,labelfont=bf]{caption}
+
+\usepackage[T1]{fontenc}
+
+% Frames for figures.
+%\usepackage{framed}
+
+% A4 paper since we're in the EU.
+\usepackage[a4paper,margin=3cm]{geometry}
+
+% For inclusion of graphics (e.g. front page logo)
+\usepackage{graphicx}
+% All graphical assets used in the images are stored in this path.
+\graphicspath{{../assets/images/}}
+
+% Always prefer UTF-8 if available.
+\usepackage[utf8]{inputenc}
+
+\usepackage{mathtools}
+
+% The microtype package improve justification.
+\usepackage{microtype}
+
+\usepackage{multicol}
+%\newenvironment{multicols}[1]{}{}
+%\newcommand\columnbreak{}
+
+\usepackage{libertine}
+\usepackage[libertine]{newtxmath}
+
+% We use natbib for Harvard-style (apalike) references.
+\usepackage{natbib}
+\usepackage{tocloft}
+
+\bibliographystyle{apalike}
+% Example: (Author, Author and Author, 2016)
+\setcitestyle{authoryear}
+
+% The default titles are way too big, so we configure them here.
+\usepackage{textcase}
+\usepackage{titlesec}
+\titleformat{\chapter}{\bfseries\huge}{\thechapter}{0.8em}{\lsstyle\textsc}
+\titleformat{\section}{\bfseries\large}{\thesection}{0.6em}{\textsc}
+\titleformat{\subsection}{\normalfont}{\thesubsection}{0.6em}{\textit}
+\titleformat{\subsubsection}{\normalfont}{\thesubsection}{0.6em}{\scshape\MakeTextLowercase}
+\titlespacing*{\chapter}{0pt}{10ex}{6ex}
+
+\usepackage{tocloft}
+
+\setlength\cftaftertoctitleskip{2ex}
+
+\renewcommand{\cftchapfont}{\lsstyle\sc}
+\renewcommand{\cftsecfont}{\normalfont}
+\renewcommand{\cftsubsecfont}{\it}%
+
+\addto\captionsenglish{% Replace "english" with the language you use
+  \renewcommand{\contentsname}%
+    {\huge\lsstyle\sc Contents}%
+}
+
+%---------------------------------------
+% GENERAL SETTINGS
+%---------------------------------------
+
+% We use both an indent for paragraphs as well as a slight gap to make them even
+% more clear. This gives a relaxed yet concise look.
+\setlength{\parindent}{1.4em}
+\setlength{\parskip}{0.8ex}
+
+% Line spacing of 1.05. This is the default.
+\linespread{1.05}
+
+%---------------------------------------
+% CUSTOM ENVIRONMENTS
+%---------------------------------------
+
+% \newfloat{Equation}{htpb}{loa}
+\DeclareCaptionType[within=chapter]{eqn}[Equation][List of Equations]
+\DeclareCaptionType[within=chapter]{algo}[Algorithm][List of Algorithms]
+
+\newenvironment{Figure}
+  {\par\medskip\centering\minipage{0.9\linewidth}}
+  {\endminipage\par\medskip}
+
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}
+
+\makeatletter
+\let\oldabs\abs
+\def\abs{\@ifstar{\oldabs}{\oldabs*}}

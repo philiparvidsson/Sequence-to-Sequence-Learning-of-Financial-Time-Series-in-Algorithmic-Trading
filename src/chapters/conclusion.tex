@@ -1,0 +1,38 @@
+\end{multicols}
+\chapter{Conclusion}
+\begin{multicols}{2}
+
+Looking at the results, it is obvious that the \textsc{lstm}-based \textsc{rnn}
+performed much better than the traditional \textsc{rnn}.  We conclude that,
+given the same time series data, on the premises in the experiments, the
+\textsc{lstm} model is much more competent at generalizing the time series
+problems.  The \textsc{rnn} is greatly improved upon by the \textsc{lstm} thanks
+to its handling of the vanishing gradient problem.
+
+The \textsc{lstm} displayed some ability in modeling market behavior (see
+chapter Discussion) while the \textsc{rnn} could not handle even the relatively
+small amount of input data used in the experiments.  For complex problems
+requiring deep and/or wide neural network architectures, the \textsc{rnn}
+performs worse compared to the \textsc{lstm}.  However, given a simple enough
+input problem, the \textsc{rnn} proves to be a viable alternative under certain
+circumstances given the fact that it places a lower demand on computational
+resources, potentially modeling the problem faster (measured in real-world time)
+compared to the \textsc{lstm}.  This, however, only applies to problems of
+trivial difficulty relative to the complex problems that the \textsc{lstm} is
+able to model.
+
+The predictions in the graphs are interesting, and although some promise of
+modeling market behavior is displayed, it is likely that the model is
+encountering a pattern similar to one seen during the training data.  A larger
+model with more input data would likely have modeled the behavior of the market
+to a greater extent, producing even better predictions of price movements.
+
+In retrospect---now that all experiments have been performed and their results
+compiled---our firm belief is that q-learning is more suited to the type of
+problem posed in this thesis \citep{gabrielsson2015}.  Although we have neither
+proved nor disproved the random walk hypothesis \citep{fama1995random}, the
+statistical distribution of price market movements are \textit{(a)} too complex
+to model using the small-scale \textsc{lstm} models in our setup, \textit{(b)}
+require large amounts of data and \textit{(c)} consume---given appropriate
+configuration with respect to layers and number of cells as well as training
+data volume---enormous computational resources.

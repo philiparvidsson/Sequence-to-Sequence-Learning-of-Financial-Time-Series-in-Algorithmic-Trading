@@ -1,0 +1,113 @@
+\input{config}
+
+\input{front-page}
+
+\newlength\longest
+
+%---------------------------------------
+% DOCUMENT
+%---------------------------------------
+
+\begin{document}
+  \includepdf[pages=1-2]{../assets/template.pdf}
+
+  %\vspace*{\fill}
+  %\hfill
+  %\begin{center}
+  %  \textit{This page intentionally left blank.}
+  %\end{center}
+  %\vspace{\fill}
+  %\thispagestyle{empty}
+  %\newpage
+
+  \includepdf[pages=4-5]{../assets/template.pdf}
+
+  \newpage
+  \vspace*{\fill}
+  \hfill
+  \begin{center}
+    \Large\textit{This page intentionally left blank.}
+  \end{center}
+  \vspace{\fill}
+  \thispagestyle{empty}
+  \newpage
+
+  \pagenumbering{roman}
+  \maketitle
+
+  \begingroup
+  \thispagestyle{empty}
+  \null\vfill
+
+  \centering
+  \parbox{0.6\linewidth}{%
+    \raggedright{\Large\itshape%
+     ``Research is to see what everybody else has seen, and to think what nobody
+     else has thought.''\par\vspace{1ex}
+    }%
+    \raggedleft\large\MakeUppercase{Albert Szent-Gyorgyi}\par%
+  }
+
+  \vfill\vfill
+
+  \clearpage
+  \endgroup
+
+  \input{acknowledgements}
+  \vspace{5mm}
+  \input{abstract}
+
+  \begingroup
+    \let\clearpage\relax
+    \let\cleardoublepage\relax
+    \tableofcontents
+  \endgroup
+
+  \cleardoublepage%
+
+  \begingroup
+    \let\clearpage\relax
+    \let\cleardoublepage\relax
+  \endgroup
+
+  \cleardoublepage\pagenumbering{arabic}
+
+  \frenchspacing
+
+  \begin{multicols}{2}
+    \input{chapters/introduction}
+    \input{chapters/theory}
+    \input{chapters/related-work}
+    \input{chapters/methodology}
+    \input{chapters/experiments}
+    \input{chapters/results}
+    \input{chapters/discussion}
+    \input{chapters/conclusion}
+    \input{chapters/future-work}
+
+    \end{multicols}
+    \chapter*{Bibliography}
+    \vspace{-3ex}
+    \begin{multicols}{2}
+    \renewcommand{\chapter}[2]{}
+    %\enlargethispage{\baselineskip}
+    \bibliography{biblio}{}
+  \end{multicols}
+
+  \input{appendix/appendix-a}
+  \input{appendix/appendix-b}
+  \input{appendix/appendix-c}
+  \input{appendix/appendix-d}
+
+  \newpage
+  \vspace*{\fill}
+  \hfill
+  \begin{center}
+    \Large\textit{This page intentionally left blank.}
+  \end{center}
+  \vspace{\fill}
+  \thispagestyle{empty}
+  \newpage
+
+  \includepdf[pages=8]{../assets/template.pdf}
+\end{document}

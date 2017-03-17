@@ -1,0 +1,57 @@
+\end{multicols}
+\chapter{Future Work}
+\begin{multicols}{2}
+
+\noindent Limited, as we all are, by time, there was no opportunity to test all
+ideas that we had.  It would be interesting to continue working with this,
+approaching different aspects of the problem in new ways.  Below are some ideas
+that we had during the time of writing this thesis.
+
+\section{Trading Performance Estimates}
+
+It would be interesting to performance more in-depth experiments on the
+predictions such as building a trading strategy upon the models' predictions and
+evaluating trading performance.
+
+\section{Q-learning Approach}
+
+Although some interesting results were attained with respect to market behavior
+predictions, it would be even more interesting to approach the problem with
+q-learning.  Q-learning is not about predicting future values (i.e. returns
+etc.)  but rather about predicting appropriate \textit{behavior}.  In regard to
+the thesis problem, this implies predicting appropriate market \textit{actions}
+or \textit{operations}; predicting when to buy or sell a financial asset.
+Although the problem has been approached with q-learning before
+\citep{gabrielsson2015}, we were unable to find any publications that have
+approached it with a deep learning model that solves the vanishing/exploding
+gradient problem, i.e. the \textsc{lstm}-based \textsc{rnn} used in this thesis.
+Combining q-learning with a \textsc{lstm}-based \textsc{rnn} would be very
+interesting indeed.
+
+\section{Exploring Larger Models}
+
+Due to time constraints, training was limited to relatively small datasets and
+models.  A larger model, although requiring significantly more training time and
+computational resources, might be able to provide more accurate predictions than
+the model presented in the results in this thesis.
+
+\section{Trying Different Features}
+
+The market data contains all relevant data for a strictly technical analysis,
+but feature extraction and selection makes relevant data aspects more prominent.
+Ceteris paribus, finding a better set of features could produce more accurate
+predictions.
+
+Although not necessarily well-suited for regression, it would be interesting to
+see the results of training a model on the seven features selected by
+\citet{gabrielsson2015}.
+
+\section{Autoencoder Feature Extraction}
+
+Instead of manual feature extraction, backtesting on a large amount of data, one
+could hypothetically build an autoencoder to compress the data, limiting the
+autoencoder to fewer and fewer cells and layers until a minimal working
+configuration has been found, and then use it for feature extraction and using
+the output as input for the \textsc{lstm} model.  It would be very interesting
+to see whether the \textsc{lstm} could model market behavior using the
+autoencoder output as features.

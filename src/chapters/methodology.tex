@@ -1,0 +1,238 @@
+\end{multicols}
+\chapter{Methodology}
+\begin{multicols}{2}
+
+\noindent Up to this point, the theory behind algorithmic trading has been
+explained thoroughly. In this chapter, the methods and approaches used to carry
+out the experiments will be detailed.
+
+\section{Approach}
+
+There are, of course, different ways to approach the thesis problem and answer
+the research question.  The approaches we picked for setting up the experiments
+is not better or worse than other approaches in any definite or absolute manner.
+The research question relies heavily on real-numbered evaluation measures,
+narrowing down the number of feasible approaches to the quantitative kind.  The
+candidate approaches and the rationale behind our final picks are laid out
+below.
+
+\subsection{Candidate Approaches}
+
+We discussed several different approaches during the initial stages of our
+thesis research.  Eventually, we came up with several candidate approaches, some
+more relevant than others.  Many were discarded quickly, while others were
+discussed thoroughly, with the more relevant ones detailed below.
+
+\subsubsection{Autoencoder Feature Extraction}
+
+Applying an autoencoder to the raw input data would produce an interesting
+``compressed'' view of the data (bounded by entropy), potentially allowing us to
+keep only relevant data.  This is mentioned in the Future Work chapter as it is
+still a very interesting approach to the problem.  We decided against it due to
+constraints on time and computational resources.
+
+\subsubsection{Implementing a Trading Strategy}
+
+The ultimate measure of performance of predictions, building a trading strategy
+would give definite answers to the question regarding predicted market behavior.
+Again limited by time, this was decided against.
+
+\subsubsection{Statistical Evaluation Measures}
+
+There are many statistical evaluation measures to choose from.  For the sake of
+the thesis problem---comparing the \textsc{lstm} against the traditional
+\textsc{rnn}---we found \textsc{mape} and \textsc{rmse} to be relevant.  We
+decided to implement this approach as it provides real-numbered evaluation
+measures, giving reproducible and testable results.
+
+\subsubsection{Visualized Graphs}
+
+Although not adequate for answering the research question on their own, graphs
+provide an intuitive sense for the problem and our models' performance.  For the
+skilled technical trader, this intuitive approach can be as useful as
+real-valued measures. This approach was also implemented.
+
+\subsection{Selected Approaches}
+
+There are a couple of reasons for our particular choice of approach in
+investigating the research question; first off, it is important that
+real-numbered measures are presented as a way of displaying definite and
+reproducible evaluation of the models' performance.  Secondly, although trading
+algorithms rely entirely on \textit{data}, visualizing the results can give an
+intuitive sense of the models' ability to predict market behavior: Although
+these graphs do not answer any questions definitively, they serve the purpose of
+reinforcing conclusions drawn from evaluation measures.
+
+\subsection{Discarded Approaches}
+
+There are many other methods for evaluating the performance with the most
+important aspect of the predictions being whether they can be used for
+successful trading on the Foreign Exchange Market.  For example, a buy-and-hold
+decision based on predictions could be simulated, on which returns could be
+computed, giving a trading performance estimate of the predictions.
+Unforunately, there was not enough time to perform such experiments.
+
+\section{Technology}
+
+A plethora of techonology exists to aid in performing our particular thesis
+experiments and although there are many viable alternatives, a choice had to be
+made.  The rationale behind most choices made in regard to technology was
+popularity (i.e. avoiding esoteric or unknown alternatives), availability,
+performance and relevance to the scientific community, thus facilitating
+reproducibility of our experiments and results to a greater extent.
+
+\subsection{Docker}
+
+A lesson learned; the same technology sometimes works different on different
+computers.  Thankfully, Docker enabled us to reproduce and deploy an identical
+environment on different machines, making collaboration much easier. Take note!
+
+Although not required to perform the experiments, Docker made it so much easier
+to collaborate using different hardware configurations, allowing everyone
+involved to reproduce the setup on their machine.
+
+\subsection{Python}
+
+We used Python 3 (specifically version 3.5.2+) as the programming language of
+choice as it is ubiquitously used by the scientific computing community and
+academics all over the world.  Documentation is rich and there is a vast amount
+of tools and third-party libraries available.
+
+\subsection{Keras and TensorFlow}
+
+Keras---a high-level deep learning library \citep{chollet2015}---was used to
+implemented the machine learning algorithm models.  It is ideal as it provides
+simple setup and execution of machine learning algorithms, making it almost
+trivial to perform practical research within the field.
+
+A TensorFlow \citep{tensorflow2015-whitepaper} backend was used in conjunction
+with Keras, enabling us to easily perform computations on the computer's GPU and
+increasing computational performance many times over.
+
+Much happened during the time of writing the thesis in regard to the development
+of both Keras and TensorFlow.  Despite both libraries providing rich
+documentation, they both changed to such a degree during the writing of the
+thesis that we had to rework our source code many times over.  During the first
+weeks of writing the thesis, TensorFlow was not available on PyPI\footnote{PyPI
+  is the Python Package Index, a repository of software for the Python
+  programming language that can be installed via the \texttt{pip} command.} and
+so we had to compile it manually.  As of finishing this thesis, both Keras and
+TensorFlow can be installed easily via the Python package manager.
+
+\subsection{Other Third-party Libraries}
+
+For computational efficiency, pandas and numpy were our go-to solutions, providing
+native code computational efficiency in Python.  Graphs and visualizations were
+done with matplotlib. Keras uses h5py for saving and loading models in the
+\textsc{hdf5} file format.
+
+\section{Data}
+
+Although there are many different financial assets and financial markets with
+various degreens of liquidity etc, we needed freely available high-frequency
+data to perform intraday trading experiments.  This fact limited our choices of
+data sources, so many were ruled out early in the process.
+
+\subsection{Selection}
+
+The requirement on our part of high-frequency data to carry out the experiments
+led us to the \textsc{forex} market, for which freely available market data can
+be acquired.  We obtained the data from Dukascopy\footnote{Website:
+  https://www.dukascopy.com/} by opening a trading account and downloading bulk,
+high-frequency data.  The currency exchange between the Euro (€) and the
+U.S. dollar (\$) was our choice of data for model training as it constitutes a
+highly liquid financial market.
+
+Beyond the selection of a data source, we had to limit the amount of data to put
+through the neural model, being limited by computational resources.  We
+initially decided to build a model for prediction of market behavior by looking
+at the past three months of financial data (November through January), but later
+decided on using the two weeks of trading data prior to the trading day to
+perform predictions on.
+
+The acquired data contained tick data, i.e.\ entries for each \textit{pip}
+change, thus providing us with asks and bids, market volume and timestamps.
+We did not have access to the \textit{market depth}---the number of bids and
+asks at each price level.
+
+\subsection{Preprocessing}
+
+During preprocessing, irrelevant parts are removed, missing values are filled
+in\footnote{Depending on the problem being solved, missing values can be
+  ignored, interpolated or forward-filled.  In our case, forward-filling was the
+  only viable alternative; using previous values and copying them forward in
+  time to fill the holes in order to avoid look-ahead bias.}, normalization and
+regularization is done and so on, essentially compiling the data to a set useful
+for computing features on and using for model training.
+
+All parameters relevant to training of our network model---considering our
+technical analysis approach---were already part of the acquired high-frequency
+data.
+
+The pip data was aggregated into one-minute candlesticks, containing
+\textsc{ohlc} prices, with missing candlesticks forwared-filled from the
+previously existing candlestick in order to avoid look-ahead bias.
+
+The magnitude of price changes on the \textsc{forex} market are small---which
+poses a problem for the neural network model as explained in the theory
+chapter---but it could not be normalized over an entire data set as that would
+violate the rule of not looking into the future, since, in a live trading
+scenario, the model would only have access to already-seen prices, which would
+make it impossible to normalize the price with future prices in mind.  Instead,
+this was solved during feature extraction through careful choice of features.
+
+\section{Evaluation}
+
+The models were evaluated in several ways.  Partly, the models' predictions were
+visualized to provide an intuitive overview of their performance.  To provide a
+real-numbered estimate of their performance, measurements were computed on their
+predictions.
+
+\subsection{Visualization}
+
+Although merely giving an intuitive sense of the models' performance,
+visualizing the results still provides an important insight into to the
+performance of the models.  The graphs are interesting to look at in comparison
+to each other; it is evident that the \textsc{lstm} model is superior to the
+traditional \textsc{rnn}, displaying a higher ability in predicting market
+behavior \textit{(see Appendix A, B, C and D)}.
+
+Furthermore, these graphs were used to confirm the integrity of the
+models---that they did what they were supposed to do.
+
+\subsection{Evaluation Measures}
+
+A more important aspect of the model evaluation process is the quantification of
+the models' performance, using real-valued measurements.  Using the mean
+absolute percentage error (\textsc{mape}) and root-mean-square error
+(\textsc{rmse}), the models were evaluated and compared against each other.  The
+models were evaluated at several points in time to avoid serendipitous results.
+
+\subsubsection{Mean Absolute Percentage Error (\textsc{mape})}
+
+The Mean Absolute Percentage Error is a measure of prediction accuracy of a
+forecasting method.  It is used to compute the accuracy of a trend estimation as
+a percentage.
+
+\begin{Figure}
+  \begin{align*}
+    & \qquad\qquad\qquad M=\frac{100}{n}\sum\limits_{t=1}^n\ \abs{\frac{A_t-F_t}{A_t}} \\
+    & \text{where $A_t$ is the actual value and $F_t$ is the forecast value}
+  \end{align*}
+  \captionof{eqn}{The mean absolute percentage error formula.}
+\end{Figure}
+
+\subsubsection{Root-Mean-Square Error (\textsc{rmse})}
+
+The Root-Mean-Square Error is a measure of difference between actual values and
+values predicted by a model.  It represents a standard deviation of the
+differences between actual predicted values.
+
+\begin{Figure}
+  \begin{align*}
+    & \qquad\qquad\qquad {RMSE}(\hat{\theta}) = \sqrt{{MSE}(\hat{\theta})} \\
+    & \text{where ${MSE}$ is the mean square error of the predicted} \\
+    & \text{values.}
+  \end{align*}
+  \captionof{eqn}{The root-mean-square error formula.}
+\end{Figure}

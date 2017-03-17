@@ -1,0 +1,151 @@
+\end{multicols}
+\chapter{Introduction}
+\begin{multicols}{2}
+
+\noindent Time series forecasting---predicting future values of variables within
+temporal datasets---is largely an unsolved problem in complex or chaotic domains
+such as weather (e.g. humidity, temperature or wind speed) and economics
+(e.g. currency exchange rates or stock prices).  Examining the problem with the
+latest models in the field of machine learning---Long Short-Term Memory
+(\textsc{lstm}) based Recurrent Neural Networks (\textsc{rnn}s)---gives rise to
+new hope of being able to predict time series in these domains.
+
+\section{Background and Motivation}
+
+Algorithmic trading combines the fields of finance and algorithmics/machine
+learning. To understand the problem, a high level of knowledge is desirable in
+both of these---and surrounding---domains.  Below, financial markets and
+artificial neural networks as well as their connection to algorithmic trading is
+briefly summarized.  It is further explained in the Theory chapter.
+
+\subsection{Financial Markets}
+
+The price movements on financial markets are difficult (even impossible,
+according to the efficient-market hypothesis) to predict \citep{fama1995random}.
+If one were able to predict the movements of, for example, stock prices or
+currency exchange rates, that information could be used to ``beat the market''
+(essentially, buying before a rise and selling before a drop) to continuously
+increase the value of an investment portfolio, yielding a positive net return.
+
+Predicting a financial market, whether the method used for prediction consists
+of a fundamental- or technical approach, rests on devising a certain successful
+strategy---looking at and considering a variety of factors and drawing a
+conclusion as to how the market should be operated on (for example, deciding
+at what point in time buying a certain financial asset is appropriate).
+
+Furthermore, if the prediction process could be automated through the
+application of an algorithm that decides when a financial asset should be bought
+or sold with some level of accuracy (with respect to its predictions of price
+movements)---in practice, letting the algorithm perform trading operations
+autonomously on the market with real money---the algorithm would turn out to be
+profitable, generating continuous positive net returns over time.
+
+Many attempts have been made with some success. During the last decade, there
+has been a rise in algorithmic trading from roughly 20 percent of the volume on
+US equity markets in 2005 up to over 50 percent in 2010 \citep{kaya2016}, and
+although the rise seems to have reached its limit during recent years, the sheer
+volume of high-frequency trading implies some level of credibility for the
+approach.
+
+\subsection{Artificial Neural Networks}
+
+Artificial neural networks (\textsc{ann}s) have been applied for several decades
+to solve multinomial logistic regression (determining what \textit{class} a data
+point belongs to) and linear regression (determining the \textit{value} of a
+dependent variable as a function of a data point's independent variables)
+problems.  The early versions of \textsc{ann}s (e.g.\ the single layer
+perceptron) could only solve \textit{linearly separable} problems
+\citep{rosenblatt1958}.  An \textsc{ann}, expressed in simple terms, is a
+mathematical model of a biological brain, consisting of neurons, synapses and
+dendrites, modeled by the \textsc{ann} through cells with scalars, activation
+functions and weights.
+
+The earlier models were also unable to predict time series (i.e.\ determining
+what class a data point belongs to with respect to its movement over time, or
+determining the value of a dependent variable as a function of the independent
+variables' movement over time), something that was later solved through the
+introduction of recurrent neural networks \citep{rumelhart1986}, which can
+handle datasets with a temporal component dictating their intradependence and
+distribution within the dataset, where each point in the sequence is correlated
+to previous (with respect to time) points through several known and unknown
+factors.
+
+\textsc{rnn}s have historically had problems with vanishing (or exploding)
+gradients---meaning they break down during training and become unable to model
+the problem well \citep{pascanu2012}---but this problem was solved through the
+introduction of the \textsc{lstm}-based \textsc{rnn}s \citep{hochreiter1997}.
+
+Regardless of whether the problem is approached as a matter of classification or
+regression, the temporal aspect renders algorithms and models not specifically
+designed for the task impotent since one single input dataset could belong to
+several different classes depending on where, in time or order, it appears in
+the data sequence.  The problem should therefore be examined with algorithms
+designed specifically for time series, such as \textsc{lstm}-based
+\textsc{rnn}s.
+
+Furthermore, \textit{sequence-to-sequence} learning is a method for training the
+network on output sequences rather than providing it with a single target value
+following the input sequence; instead of giving the model an input sequence and
+the next, single value following the sequence, the model is given the
+\textit{sequence} following the input sequence.  This is also the method used to
+model the problem in this thesis and is explained in detail in the theory
+chapter.
+
+\section{Current Research}
+
+Currently, in the field of machine learning, hidden Markov models
+(\textsc{hmm}s), dynamic Bayesian networks (\textsc{dbn}s), tapped-delay neural
+networks (\textsc{tdnn}s) and \textsc{rnn}s are commonly used to handle
+sequential datasets, and have been applied with some degree of success to
+financial markets \citep{saad1998,kita2012,zhang2004}.
+
+Although much research is currently being done into the application of
+\textsc{lstm}-based \textsc{rnn}s in financial markets, the research is still in
+its infancy, and although the \textsc{lstm}-based \textsc{rnn} has been around
+for twenty years, it is only recently that progress is being made to a
+significant degree in practice.  The volume of data created in the past couple
+of years---about 90 percent of all data ever created by humans
+\citep{devakunchari2014}---together with relatively cheap but very fast graphics
+processing units (\textsc{gpu}s), have opened up the field of machine learning
+to more cost efficient research.
+
+More recently, deep \textsc{lstm}-based \textsc{rnn}s have been applied with
+some level of success in predicting future time series from historical
+sequential datasets; such as predicting the weather for the next twenty-four
+hours \citep{zaytar2016}, or predicting the next sequence of words in natural
+language \citep{sutskever2014sequence}.
+
+While natural language has obvious structure (i.e. \textit{grammar}), weather,
+instead, is seemlingy chaotic, controlled by many unknown factors.  Despite
+this; considering the success in weather prediction, \textsc{lstm}-based
+\textsc{rnn}s may have the ability to take into account these factors,
+especially given an appropriate set of \textit{features}---input data processed
+to make certain aspects more prominent, thus enabling the algorithm to model the
+problem more easily.
+
+\section{Problem Statement}
+
+Financial time series are used ubiquitously in algorithmic trading.  In
+algorithmic trading, it is imperative that accurate predictions are made about
+numerous variables (such as volatility and returns) in order to time market
+entry and exit.
+
+Since deep \textsc{lstm}-based \textsc{rnn}s (specifically using
+sequence-to-sequence learning) have not been applied within the algorithmic
+trading domain before, and since they have shown success in solving similar
+problems in other domains, it raises the question whether the technique can be
+used to predict a future sequence of financial variables that can be used to
+time both entry and exit positions within a certain time horizon.  The
+uniqueness of this approach is the prediction of \textit{sequences} at a time,
+rather than predicting a single data point on each iteration.
+
+Assuming that correlations exist along the temporal dimension of the dataset,
+the problem is reduced to a matter of finding an appropriate set of features
+enhancing the correlations, on which to train the \textsc{lstm}-based
+\textsc{rnn}.  Expressed in a more concise manner, we
+attempt to answer the question: \\
+
+--- Can price movements on financial markets be modeled through the application
+of \textsc{lstm}-based \textsc{rnn}s, specifically using
+\textit{sequence-to-sequence} learning, and if so, how does the
+\textsc{lstm}-based \textsc{rnn} compare to the traditional \textsc{rnn}.

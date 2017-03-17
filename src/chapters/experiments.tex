@@ -1,0 +1,134 @@
+\end{multicols}
+\chapter{Experiments}
+\begin{multicols}{2}
+
+\noindent The experiments were carried out many times over.  Partly because the
+model was being tweaked to provide better predictions, partly because new
+features were being tested and partly because discussion and literature studies
+during the thesis research work pointed us in new directions.  Regardless,
+presented below are our final approaches to the problems and their setups.
+
+\section{Models}
+
+The choice of neural network types were decided from the start---the
+\textsc{lstm}-based \textsc{rnn} and the traditional \textsc{rnn}--but the
+network architecture (layers, cells, dropout probability etc) was tweaked and
+adjusted many times over.  We began our work by reading literature, building
+upon previous researchers experience, eventually coming up with a model setup
+that seemed adequate for our kind of approach.  Beyond that, we intuitively
+added and removed layers and cells in each layer, trying to understand the setup
+better.
+
+\section{Model Configurations}
+
+Our final setup for the \textsc{lstm} was a model with six layers; an input
+layer with $2048$ cells, a dropout layer with 20\% dropout probability, a hidden
+layer with $1024$ cells, another dropout layer with 20\% dropout probability,
+another hidden layer with $512$ cells and a final layer with the same dropout
+probability again, ending with a time-distributed dense output layer with linear
+activation functions.
+
+For the \textsc{rnn}, the final configuration was again six layers; an input
+layer with $1024$ cells, a dropout layer with 20\% dropout probability, a hidden
+layer with $512$ cells, another dropout layer with 20\% dropout probability,
+another hidden layer with $256$ cells and a final layer with the same dropout
+probability again, ending with a time-distributed dense output layer with linear
+activation functions, thus having the same configuration as the \textsc{lstm}.
+
+\section{Sliding Window}
+
+The models were setup to take input sequences of ten data points and to predict
+the ten minutes following the input sequence, thus configured as a many-to-many
+(\textit{10-to-10}) neural prediction model.  We used a sliding window with a
+width of ten data points---representing ten minutes of data---and moved it
+forward one data point (one minute) for each training iteration.
+
+\section{Features}
+
+Using high-frequency data, all features used were based on a technical analysis
+approach, thoroughly discussed in the theory chapter.  Although several
+different feature configurations were attempted, we eventually settled on the
+ones detailed below.  All were normalized by using an online normalization
+function, Equation~\ref{eq:norm}
+
+\begin{Figure}
+  $norm(x, t) = \frac{{x_t}-{x_{t-1}}}{x_{t-1}}$
+  \captionof{eqn}{The normalization function used.}
+\label{eq:norm}
+\end{Figure}
+
+\subsubsection{Returns}
+
+\begin{Figure}
+  $F_1(t) = {norm}(C_{bid}, t)$
+  \captionof{eqn}{The first extracted feature---close bid returns.}
+\end{Figure}
+
+\noindent Where $C_{bid}$ is the close bid of an \textsc{ohlc} data point in the
+sequence at time $t$.
+
+\subsubsection{Volume}
+
+\begin{Figure}
+  $F_2(t) = {{norm}({SMA^{5}}(V_{bid}), t)}$
+  \captionof{eqn}{The second extracted feature---a five-point period simple
+    moving average of the market bid volume.}
+\end{Figure}
+
+\noindent Where $V_{bid}$ is the bid volume.
+
+\subsubsection{Relative Strength Index}
+
+\begin{Figure}
+  $F_3(t) = {{norm}({RSI^{10}}(C_{bid}), t)}$
+  \captionof{eqn}{The third extracted feature---a ten-point relative strength
+    index computed on the close bid.}
+\end{Figure}
+
+\subsubsection{Spread}
+
+\begin{Figure}
+  $F_4(t) = {{norm}({Spread}, t)}$
+  \captionof{eqn}{The fourth extracted feature---the market price spread.}
+\end{Figure}
+
+\noindent The features were then scaled by hand to provide a standardized range
+across the independent variables; each feature was scaled independently on a few
+training datasets to produce values of roughly equal range, as well as to keep
+values within the range of $-1$ and $1$.  This was done on training data to
+prevent introducing future data into the model, thus, the normalization might
+not produce values of equal range or within the limits for test data to the same
+degree.  It proved better than not performing this ``manual'' normalization at
+all, without which weights would have become skewed in the model.
+
+\section{Model Training}
+
+Each model was trained for a set amount of iterations; 10,000.  It should be
+noted that the \textsc{lstm} is more computationally intensive and thus required
+more time to reach the same number of iterations.
+
+Training was done on the fourteen consecutive trading days prior to the
+prediction day.  Predictions were limited to February 9th, 2017 to avoid
+encountering many different marking regimes during the training data time
+period, potentially simplifying generalization of market behavior and thereby
+potentially increasing model performance.
+
+\section{Hardware}
+
+Training was done for many different setups on several different machines during
+our research.  For the sake of completeness, the hardware specification of the
+machine used to train our final models used in the experiments is presented in
+Table~\ref{tbl:hardware} below.
+
+\begin{center}
+  \begin{tabular}{l l}
+    \textbf{Motherboard}   & MSI Z97--5                     \\
+    \textbf{Memory}        & Hyper-X Savage 16GB            \\
+    \textbf{Graphics card} & MSI Nvidia Geforce GTX 760 2GB \\
+    \textbf{Processor}     & Intel i5--4690K                \\
+    \textbf{Storage}       & Samsung 840 EVO 250GB
+  \end{tabular}
+  \captionof{table}{The hardware confguration of the system used for model
+    training.}
+\label{tbl:hardware}
+\end{center}
