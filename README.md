@@ -2,7 +2,7 @@
 
 # Sequence-to-Sequence Learning of Financial Time Series in Algorithmic Trading
 
-[![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)](http://creativecommons.org/licenses/by/4.0/)
+[![License: CC BY 4.0](https://img.shields.io/github/license/philiparvidsson/Sequence-to-Sequence-Learning-of-Financial-Time-Series-in-Algorithmic-Trading.svg)](http://creativecommons.org/licenses/by/4.0/)
 
 This is my bachelor's thesis that I wrote over the course of two months during my final year of studies, earning my Bachelor of Science in Computer Science degree.  The thesis was co-authored by my good friend [Tobias Ånhed](http://github.com/tobiasanhed).
 
@@ -31,6 +31,6 @@ Despite this, we feel that we were very successful in developing high-quality so
 Lastly, and perhaps most importantly, we learned a tremendous amount during the time of writing the thesis and performing the research, greatly expanding our knowledge in the fields of machine learning and finance.
 
 ## Contributors
-* Philip Arvidsson - *author* [philiparvidsson](https://github.com/philiparvidsson)
-* Tobias Ånhed - *author* - [tobiasanhed](https://github.com/tobiasanhed)
-* Patrick Gabrielsson - *supervisor* - [PAGA](http://www.hb.se/en/Shortcuts/Contact/Employee/PAGA)
+* Philip Arvidsson - *Author* - [philiparvidsson](https://github.com/philiparvidsson)
+* Tobias Ånhed - *Author* - [tobiasanhed](https://github.com/tobiasanhed)
+* Patrick Gabrielsson - *Supervisor* - [PAGA](http://www.hb.se/en/Shortcuts/Contact/Employee/PAGA)
