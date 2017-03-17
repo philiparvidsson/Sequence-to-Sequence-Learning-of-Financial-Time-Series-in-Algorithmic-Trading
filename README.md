@@ -2,6 +2,8 @@
 
 # Sequence-to-Sequence Learning of Financial Time Series in Algorithmic Trading
 
+[![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)(http://creativecommons.org/licenses/by/4.0/)
+
 This is my bachelor's thesis that I wrote over the course of two months during my final year of studies, earning my Bachelor of Science in Computer Science degree.  The thesis was co-authored by my good friend [Tobias Ånhed](http://github.com/tobiasanhed).
 
 ### [Click here to read the thesis.](http://philiparvidsson.com/thesis.pdf)
