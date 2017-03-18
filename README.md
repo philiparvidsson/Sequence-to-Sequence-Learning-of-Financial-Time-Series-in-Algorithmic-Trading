@@ -6,7 +6,7 @@
 
 This is my bachelor's thesis that I wrote over the course of two months during my final year of studies, earning my Bachelor of Science in Computer Science degree.  The thesis was co-authored by my good friend [Tobias Ånhed](http://github.com/tobiasanhed).
 
-### [Click here to read the thesis.](http://philiparvidsson.com/static/thesis.pdf)
+### [Click here to read the thesis.](http://philiparvidsson.com/thesis.pdf)
 
 <img align="right" alt="" width="232" src="assets/images/appendix/appendix-a.png" />
 
