@@ -26,7 +26,7 @@ If you want to compile the thesis document on your own, run `python make.py` in 
 ## Post-mortem
 Being limited to roughly two months of work with no real prior knowledge, we felt that there was not enough time to detail a thorough plan for performing the thesis research. Had we started the thesis project with the knowledge we have now, we would have approached the problem differently—likely with a q-learning approach ([Gabrielsson, 2015](https://pdfs.semanticscholar.org/b294/6734f555a39eb34a50360b27d9bf799449c8.pdf)); attempting to predict profitable trading operations rather than predicting market behavior.
 
-Despite this, we feel that we were very successful in developing high-quality software (which is now being used in research) for pursuing further research within the fields of econometrics, machine learning and algorithmic trading.
+Despite this, we feel that we were very successful in developing high-quality software (which is now being used in research) with Python/Keras/TensorFlow for pursuing further research within the fields of econometrics, machine learning and algorithmic trading.
 
 Lastly, and perhaps most importantly, we learned a tremendous amount during the time of writing the thesis and performing the research, greatly expanding our knowledge in the fields of machine learning and finance.
 
